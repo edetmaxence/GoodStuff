@@ -1,0 +1,11 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}GoodStuff{% endblock %}
+
+{% block body %}
+{% for article in articles %}
+    {{ article.title }}
+{% endfor %}
+{{ knp_pagination_render(articles) }}
+
+{% endblock %}
