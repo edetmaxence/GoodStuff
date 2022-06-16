@@ -30,5 +30,25 @@ class UserController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
-    
+
+    #[Route('/user/edit/{id}', name: 'edit_user', requirements: ['id' => '\d+'])]
+    public function edit(Request $request, User $user, UserRepository $userRepository): Response
+    {
+        
+        $form = $this->createForm(UserFormType::class, $user);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $userRepository->add($user, true);
+            
+            $this->addFlash('success', 'Votre Compte est bien été enregistré !');
+
+            return $this->redirectToRoute('app_home');
+            
+        }
+        return $this->render('user/edit.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
 }
