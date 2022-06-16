@@ -50,3 +50,9 @@ h1 {
     margin-right: 5px;
     color: whitesmoke;
 }
+main {
+    display: flex;
+}
+.secondSec {
+
+}
