@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Account Utilisateur
+{% endblock %}
+
+{% block body %}
+
+	<div class="container w-50 py-4">
+		<h1>Bienvenue
+			<span class="text-primary text-capitalize">
+				{{ app.user.lastname }}
+			</span>
+			!
+		</h1>
+
+		<div class="pv 3">
+			<p>Téléphone :
+				{{ app.user.phonenumber }}</p>
+			<p>Email :
+				{{ app.user.email }}</p>
+		</div>
+		<div class="pv 3">
+			<p>Code postale :
+				{{ app.user.postcode }}
+				- Ville :
+				{{ app.user.city }}</p>
+		</div>
+
+		{# Demander à utilisateur de completer ses donnée #}
+		<a href="{{ path('edituser', { id: app.user.id }) }}" class=" btn btn-outline-warning">
+			Completer vos données
+		</a>
+
+		<table class="table-light">
+			<tr>
+				<th>
+                    Annonce
+                </th>
+				<th>
+					{# Demander à utilisateur de completer ses donnée #}
+					<a href="" class=" btn btn-outline-warning">
+						Editer
+					</a>
+				</th>
+				<th>
+					{# Demander à utilisateur de completer ses donnée #}
+					<a href="" class=" btn btn-outline-warning">
+						Supprimer
+					</a>
+				</th>
+			</tr>
+		</table>
+
+
+	</div>
+
+
+{% endblock %}

@@ -31,7 +31,7 @@ class UserController extends AbstractController
         ]);
     }
 
-    #[Route('/user/edit/{id}', name: 'edit_user', requirements: ['id' => '\d+'])]
+    #[Route('/user/edit/{id}', name: 'edituser', requirements: ['id' => '\d+'])]
     public function edit(Request $request, User $user, UserRepository $userRepository): Response
     {
         
