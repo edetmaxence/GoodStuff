@@ -1,0 +1,56 @@
+
+{% extends 'base2.html.twig' %}
+
+{% block title %}GoodStuff Admin{% endblock %}
+
+
+{% block body %}
+
+
+	<table class='table'>
+		<thead>
+			<tr>
+				<th>title</th>
+				<th>description</th>
+				<th>gens</th>
+				<th>ville</th>
+				<th>prix</th>
+				<th>Creer le</th>
+			</tr>
+		</thead>
+
+		<tbody>
+
+			<a class="btn btn-secondary" type="button" href="{{ path('newArticle') }}">New</a>
+
+
+			{% for article in articles %}
+
+				<tr>
+					<td>
+						<a href="{{ path('detailArticle', {id: article.id })}}">{{ article.title }}
+						</a>
+					</td>
+					<td>{{ article.description }}</td>
+					<td>{{ article.owner.firstname }}</td>
+					<td>{{ article.owner.city }}</td>
+					<td>{{ article.prix }}</td>
+					<td>{{ article.createdAt| date('d-m-Y') }}</td>
+					<td>
+						<a class="btn btn-secondary" type="button" href="{{ path('editArticle', {id: article.id }) }}">Edit</a>
+
+						<form action="{{ path('deleteArticle' , {id: article.id })}}" method="POST">
+							<input type="hidden" name="token" value="{{ csrf_token('deletearticle-'~ article.id )}}">
+							<button class="btn btn-danger" type="submit">Delete</button>
+						</form>
+					</td>
+
+				</tr>
+
+
+			{% endfor %}
+		</tbody>
+	</table>
+
+
+{% endblock %}
