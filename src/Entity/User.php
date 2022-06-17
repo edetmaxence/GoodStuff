@@ -55,6 +55,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     public function getEmail(): ?string
+<<<<<<< HEAD
+=======
     {
         return $this->email;
     }
@@ -132,41 +134,71 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     public function getFirstname(): ?string
+>>>>>>> dev
     {
-        return $this->firstname;
+        return $this->email;
     }
 
-    public function setFirstname(string $firstname): self
+    public function setEmail(string $email): self
     {
-        $this->firstname = $firstname;
+        $this->email = $email;
 
         return $this;
     }
 
-    public function getPostcode(): ?string
+    /**
+     * A visual identifier that represents this user.
+     *
+     * @see UserInterface
+     */
+    public function getUserIdentifier(): string
     {
-        return $this->postcode;
+        return (string) $this->email;
     }
 
-    public function setPostcode(string $postcode): self
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
     {
-        $this->postcode = $postcode;
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
 
         return $this;
     }
 
-    public function getCity(): ?string
+<<<<<<< HEAD
+    /**
+     * @see PasswordAuthenticatedUserInterface
+     */
+    public function getPassword(): string
     {
-        return $this->city;
+        return $this->password;
     }
 
-    public function setCity(string $city): self
+    public function setPassword(string $password): self
     {
-        $this->city = $city;
+        $this->password = $password;
 
         return $this;
     }
 
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials()
+    {
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
+=======
     public function getPhonenumber(): ?string
     {
         return $this->phonenumber;
@@ -177,6 +209,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->phonenumber = $phonenumber;
 
         return $this;
+>>>>>>> dev
     }
 
     /**
