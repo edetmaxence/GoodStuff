@@ -48,13 +48,9 @@
         "symfony/yaml": "6.1.*",
         "symfonycasts/reset-password-bundle": "^1.13",
         "twig/extra-bundle": "^2.12|^3.0",
-<<<<<<< HEAD
         "twig/string-extra": "^3.4",
-        "twig/twig": "^2.12|^3.0"
-=======
         "twig/twig": "^2.12|^3.0",
         "vich/uploader-bundle": "^1.19"
->>>>>>> bdb8c4ec731f030269b33b19d74dc00b3b9cee45
     },
     "config": {
         "allow-plugins": {

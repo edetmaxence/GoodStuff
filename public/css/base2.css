@@ -26,6 +26,9 @@ h1 {
     display: flex;
     flex-direction: column;
 }
+.menu a:hover {
+    color: rgb(175, 175, 175);
+}
 .itemMenu {
     display: flex;
     flex-direction: row;
@@ -50,9 +53,6 @@ h1 {
     margin-right: 5px;
     color: whitesmoke;
 }
-.none {
-    display: none;
-}
 
     /* Table article */
 
@@ -63,13 +63,14 @@ main {
     width: 88%;
 }
 .tableArticle {
-    width: 75%;
+    width: 83%;
     margin: auto;
     margin-top: 95px;
 }
 .tableArticle td {
     border-bottom: rgb(102, 102, 102) 1px solid;
     font-size: 1.1rem;
+    text-align: center;
 }
 .tableArticle thead{
     border: 1px solid rgb(102, 102, 102);

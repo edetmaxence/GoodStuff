@@ -44,21 +44,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'owner', targetEntity: Article::class)]
     private $articles;
 
-    #[ORM\Column(type: 'string', length: 120)]
-    private $firstname;
-
-    #[ORM\Column(type: 'string', length: 15)]
-    private $pseudonyme;
-
-    #[ORM\Column(type: 'string', length: 50)]
-    private $lastname;
-
-    #[ORM\Column(type: 'string', length: 5)]
-    private $postcode;
-
-    #[ORM\Column(type: 'string', length: 255)]
-    private $city;
-
     #[ORM\Column(type: 'string', length: 15)]
     private $phone;
 
@@ -73,8 +58,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     public function getEmail(): ?string
-<<<<<<< HEAD
-=======
     {
         return $this->email;
     }
@@ -137,97 +120,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
-    }
-
-    public function getLastname(): ?string
-    {
-        return $this->lastname;
-    }
-
-    public function setLastname(string $lastname): self
-    {
-        $this->lastname = $lastname;
-
-        return $this;
-    }
-
-    public function getFirstname(): ?string
->>>>>>> dev
-    {
-        return $this->email;
-    }
-
-    public function setEmail(string $email): self
-    {
-        $this->email = $email;
-
-        return $this;
-    }
-
-    /**
-     * A visual identifier that represents this user.
-     *
-     * @see UserInterface
-     */
-    public function getUserIdentifier(): string
-    {
-        return (string) $this->email;
-    }
-
-    /**
-     * @see UserInterface
-     */
-    public function getRoles(): array
-    {
-        $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
-
-        return array_unique($roles);
-    }
-
-    public function setRoles(array $roles): self
-    {
-        $this->roles = $roles;
-
-        return $this;
-    }
-
-<<<<<<< HEAD
-    /**
-     * @see PasswordAuthenticatedUserInterface
-     */
-    public function getPassword(): string
-    {
-        return $this->password;
-    }
-
-    public function setPassword(string $password): self
-    {
-        $this->password = $password;
-
-        return $this;
-    }
-
-    /**
-     * @see UserInterface
-     */
-    public function eraseCredentials()
-    {
-        // If you store any temporary, sensitive data on the user, clear it here
-        // $this->plainPassword = null;
-=======
-    public function getPhonenumber(): ?string
-    {
-        return $this->phonenumber;
-    }
-
-    public function setPhonenumber(string $phonenumber): self
-    {
-        $this->phonenumber = $phonenumber;
-
-        return $this;
->>>>>>> dev
     }
 
     /**
@@ -328,6 +220,26 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPhone(string $phone): self
     {
         $this->phone = $phone;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of phonenumber
+     */ 
+    public function getPhonenumber()
+    {
+        return $this->phonenumber;
+    }
+
+    /**
+     * Set the value of phonenumber
+     *
+     * @return  self
+     */ 
+    public function setPhonenumber($phonenumber)
+    {
+        $this->phonenumber = $phonenumber;
 
         return $this;
     }
