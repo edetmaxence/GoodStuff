@@ -17,6 +17,49 @@
         {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+        <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
+            <div class="container">
+                <a class="navbar-brand" href="{{ path('app_home') }}">GoodStuff</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <div class="nav-link" href="{# {{ path('new_advertisement') }} #}">Déposer une annonce</div>
+                    </li>                    
+                    {% if app.user is not null %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{# {{ path('category_list') }} #}">Catégories</a>
+                        </li>
+                    {% endif %}
+                    
+                    {% if app.user is not null %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{# {{ path('app_account') }} #}">Bonjour {# {{ app.user.userIdentifier }} #}</a>
+                        </li>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <li class="nav-item">
+                                <a class="nav-link text-warning" href="{# {{ path('app_admin') }} #}">Administrator</a>
+                            </li>
+                        {% endif %}
+                        <li class="nav-item">
+                                <a class="nav-link text-warning" href="{# {{ path('app_logout') }} #}">Se déconnecter</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{# {{ path('app_login') }} #}">Se connecter</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{# {{ path('app_register') }} #}">Ouvrir un compte</a>
+                        </li>
+                    {% endif %}
+                </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container py-5">
+            {% block body %}{% endblock %}
+        </div>
     </body>
 </html>
