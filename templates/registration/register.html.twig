@@ -5,13 +5,7 @@
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 {% endblock %}
 {% block body %}
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
-
-     {{ form_end(registrationForm) }}
+    {{ form(registrationForm) }}
+    
     
 {% endblock %}
