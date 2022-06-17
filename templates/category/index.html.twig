@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}GoodStuff Categories{% endblock %}
+
+
+{% block body %}
+
+	<div class="container w-50 mx-auto">
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">Catégory</th>
+					<th scope="col">Modifier</th>
+					<th scope="col">Ajouter</th>
+					<th scope="col">Supprimer</th>
+				</tr>
+			</thead>
+			<tbody>
+            {% for category in categories %}
+				<tr>
+					<td> {{ category.name }} </td>
+
+					<td><a href="{{ path('app_category_edit',{ id: category.id } ) }}" title="Editer cette catégorie" class="btn btn-sm btn-outline-secondary">Editer</a></td>
+					
+					<td> <a href=" {{ path('app_category_new',{ id: category.id }) }} " title="Ajouter une catégory" class="btn btn-warning">Ajouter</td>
+
+					<td><form action="{{ path('app_category_delete', { id: category.id } ) }}" method="post" class="d-inline">
+						<input type="hidden" name="token" value="{{ csrf_token('delete-category-'~ category.id) }}">
+						<button class="btn btn-sm btn-outline-danger">Supprimer</button>
+					</form> </td>
+					
+				</tr>
+            {% endfor %}    
+			</tbody>
+		</table>
+	</div>
+
+
+{% endblock %}
