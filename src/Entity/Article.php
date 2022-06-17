@@ -5,7 +5,13 @@ namespace App\Entity;
 use App\Repository\ArticleRepository;
 use Doctrine\ORM\Mapping as ORM;
 
+
+use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\File;
+
 #[ORM\Entity(repositoryClass: ArticleRepository::class)]
+#[Vich\Uploadable]
 class Article
 {
     #[ORM\Id]
@@ -25,8 +31,27 @@ class Article
     #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'articles')]
     private $category;
 
+  
+
+    #[ORM\Column(type: 'integer')]
+    private $prix;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $cover;
+
+    #[Vich\UploadableField(mapping: 'articles', fileNameProperty: 'cover' )]
+    #[Assert\Image(mimeTypesMessage: 'Ceci n\'est pas une image')]
+    #[Assert\File(maxSize: '1M',
+     maxSizeMessage: 'Cette image ne doit pas dépasser les {{ limit }} {{ suffix }}',
+
+     )]
+  
+    private $coverFile;
+
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'articles')]
     private $owner;
+
+   
 
 
 
@@ -83,17 +108,63 @@ class Article
         return $this;
     }
 
-    public function getOwner(): ?User
+ 
+
+    public function getPrix(): ?int
+    {
+        return $this->prix;
+    }
+
+    public function setPrix(int $prix): self
+    {
+        $this->prix = $prix;
+
+        return $this;
+    }
+
+    public function getCover(): ?string
+    {
+        return $this->cover;
+    }
+
+    public function setCover(string $cover): self
+    {
+        $this->cover = $cover;
+
+        return $this;
+    }
+
+    public function getCoverFile(): ?File
+    {
+        return $this->coverFile;
+    }
+
+    public function setCoverFile(?File $coverFile=null): void
+    {
+        $this->coverFile = $coverFile;
+
+        
+
+        if (null !== $coverFile) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->updated_at = new \DateTimeImmutable();
+        }
+    }
+
+    public function getOwner(): ?user
     {
         return $this->owner;
     }
 
-    public function setOwner(?User $owner): self
+    public function setOwner(?user $owner): self
     {
         $this->owner = $owner;
 
         return $this;
     }
+
+   
 
    
 }
