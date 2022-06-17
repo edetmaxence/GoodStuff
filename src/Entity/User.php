@@ -37,17 +37,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string', length: 50)]
     private $lastname;
 
-    #[ORM\Column(type: 'string', length: 120)]
+    #[ORM\Column(type: 'string', length: 50)]
     private $firstname;
 
     #[ORM\Column(type: 'string', length: 5)]
     private $postcode;
 
-    #[ORM\Column(type: 'string', length: 100)]
-    private $city;
-
     #[ORM\Column(type: 'string', length: 10)]
     private $phonenumber;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $city;
 
     public function __construct()
     {
@@ -97,7 +97,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $this->roles = $roles;
 
-        return $this;
+        return array_unique($roles);
     }
 
     /**
@@ -111,6 +111,26 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPassword(string $password): self
     {
         $this->password = $password;
+
+        return $this;
+    }
+
+ 
+
+    /**
+     * @return Collection<int, Article>
+     */
+    public function getArticles(): Collection
+    {
+        return $this->articles;
+    }
+
+    public function addArticle(Article $article): self
+    {
+        if (!$this->articles->contains($article)) {
+            $this->articles[] = $article;
+            $article->setOwner($this);
+        }
 
         return $this;
     }
@@ -136,32 +156,26 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return Collection<int, Article>
-     */
-    public function getArticles(): Collection
+    public function getPhonenumber(): ?string
     {
-        return $this->articles;
+        return $this->phonenumber;
     }
 
-    public function addArticle(Article $article): self
+    public function setPhonenumber(string $phonenumber): self
     {
-        if (!$this->articles->contains($article)) {
-            $this->articles[] = $article;
-            $article->setOwner($this);
-        }
+        $this->phonenumber = $phonenumber;
 
         return $this;
     }
 
-    public function removeArticle(Article $article): self
+    public function getCity(): ?string
     {
-        if ($this->articles->removeElement($article)) {
-            // set the owning side to null (unless already changed)
-            if ($article->getOwner() === $this) {
-                $article->setOwner(null);
-            }
-        }
+        return $this->city;
+    }
+
+    public function setCity(string $city): self
+    {
+        $this->city = $city;
 
         return $this;
     }
@@ -202,27 +216,5 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getCity(): ?string
-    {
-        return $this->city;
-    }
-
-    public function setCity(string $city): self
-    {
-        $this->city = $city;
-
-        return $this;
-    }
-
-    public function getPhonenumber(): ?string
-    {
-        return $this->phonenumber;
-    }
-
-    public function setPhonenumber(string $phonenumber): self
-    {
-        $this->phonenumber = $phonenumber;
-
-        return $this;
-    }
+    
 }
