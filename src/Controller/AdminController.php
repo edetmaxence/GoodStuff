@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\ArticleRepository;
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\Request;
@@ -12,7 +13,7 @@ use Knp\Component\Pager\PaginatorInterface;
 
 class AdminController extends AbstractController
 {
-    #[Route('/', name: 'app_admin')]
+    #[Route('/admin', name: 'app_admin')]
     public function index(ArticleRepository $articleRepository, Request $request, PaginatorInterface $paginatorInterface ): Response
     {   
         $articles = $paginatorInterface->paginate(
