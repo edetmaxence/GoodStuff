@@ -6,10 +6,12 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
+#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -26,26 +28,31 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string')]
     private $password;
 
-    #[ORM\Column(type: 'string', length: 50)]
-    private $lastname;
-
-    #[ORM\Column(type: 'string', length: 120)]
-    private $firstname;
-
-    #[ORM\Column(type: 'string', length: 5)]
-    private $postcode;
-
-    #[ORM\Column(type: 'string', length: 100)]
-    private $city;
-
-    #[ORM\Column(type: 'string', length: 10)]
-    private $phonenumber;
+    #[ORM\Column(type: 'boolean')]
+    private $isVerified = false;
 
     #[ORM\OneToMany(mappedBy: 'owner', targetEntity: Article::class)]
     private $articles;
 
-    #[ORM\Column(type: 'string', length: 15)]
-    private $phone;
+    #[ORM\Column(type: 'string', length: 50, nullable: true)]
+    private $lastname;
+
+    #[ORM\Column(type: 'string', length: 50, nullable: true)]
+    private $firstname;
+
+    #[ORM\Column(type: 'string', length: 5, nullable: true)]
+    private $postcode;
+
+    #[ORM\Column(type: 'string', length: 10, nullable: true)]
+    private $phonenumber;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $city;
+
+   
+
+
+
 
     public function __construct()
     {
@@ -57,17 +64,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->id;
     }
 
-    public function getEmail(): ?string
-    {
-        return $this->email;
-    }
-
-    public function setEmail(string $email): self
-    {
-        $this->email = $email;
-
-        return $this;
-    }
 
     /**
      * A visual identifier that represents this user.
@@ -98,6 +94,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+
     /**
      * @see PasswordAuthenticatedUserInterface
      */
@@ -113,14 +122,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @see UserInterface
-     */
-    public function eraseCredentials()
-    {
-        // If you store any temporary, sensitive data on the user, clear it here
-        // $this->plainPassword = null;
-    }
+ 
 
     /**
      * @return Collection<int, Article>
@@ -140,62 +142,35 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function removeArticle(Article $article): self
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials()
     {
-        if ($this->articles->removeElement($article)) {
-            // set the owning side to null (unless already changed)
-            if ($article->getOwner() === $this) {
-                $article->setOwner(null);
-            }
-        }
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
+    }
+
+    public function isVerified(): bool
+    {
+        return $this->isVerified;
+    }
+
+    public function setIsVerified(bool $isVerified): self
+    {
+        $this->isVerified = $isVerified;
 
         return $this;
     }
 
-    public function getFirstname(): ?string
+    public function getPhonenumber(): ?string
     {
-        return $this->firstname;
+        return $this->phonenumber;
     }
 
-    public function setFirstname(string $firstname): self
+    public function setPhonenumber(string $phonenumber): self
     {
-        $this->firstname = $firstname;
-
-        return $this;
-    }
-
-    public function getPseudonyme(): ?string
-    {
-        return $this->pseudonyme;
-    }
-
-    public function setPseudonyme(string $pseudonyme): self
-    {
-        $this->pseudonyme = $pseudonyme;
-
-        return $this;
-    }
-
-    public function getLastname(): ?string
-    {
-        return $this->lastname;
-    }
-
-    public function setLastname(string $lastname): self
-    {
-        $this->lastname = $lastname;
-
-        return $this;
-    }
-
-    public function getPostcode(): ?string
-    {
-        return $this->postcode;
-    }
-
-    public function setPostcode(string $postcode): self
-    {
-        $this->postcode = $postcode;
+        $this->phonenumber = $phonenumber;
 
         return $this;
     }
@@ -212,35 +187,41 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getPhone(): ?string
+    public function getLastname(): ?string
     {
-        return $this->phone;
+        return $this->lastname;
     }
 
-    public function setPhone(string $phone): self
+    public function setLastname(string $lastname): self
     {
-        $this->phone = $phone;
+        $this->lastname = $lastname;
 
         return $this;
     }
 
-    /**
-     * Get the value of phonenumber
-     */ 
-    public function getPhonenumber()
+    public function getFirstname(): ?string
     {
-        return $this->phonenumber;
+        return $this->firstname;
     }
 
-    /**
-     * Set the value of phonenumber
-     *
-     * @return  self
-     */ 
-    public function setPhonenumber($phonenumber)
+    public function setFirstname(string $firstname): self
     {
-        $this->phonenumber = $phonenumber;
+        $this->firstname = $firstname;
 
         return $this;
     }
+
+    public function getPostcode(): ?string
+    {
+        return $this->postcode;
+    }
+
+    public function setPostcode(string $postcode): self
+    {
+        $this->postcode = $postcode;
+
+        return $this;
+    }
+
+    
 }
