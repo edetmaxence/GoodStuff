@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Text&family=Roboto:wght@300;400;500;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+}
+body {
+    overflow: hidden;
+}
+header {
+    background-color: rgb(38, 103, 245);
+    padding: 3px 10px 3px 10px;
+}
+h1 {
+    font-size: 1.7rem;
+    padding: 3px;
+    color: whitesmoke;
+}
+.firstSec {
+    background-color: rgb(48, 48, 48);
+    height: 100vh;
+    width: 12%;
+}
+.menu {
+    display: flex;
+    flex-direction: column;
+}
+.itemMenu {
+    display: flex;
+    flex-direction: row;
+    padding: 13px 0 13px 0;
+    text-decoration: none;
+    color: whitesmoke;
+    text-align: center;
+    cursor: pointer;
+}
+.itemMenu p {
+    margin: 0;
+}
+.now {
+    background-color: rgba(17, 17, 17, 0.877);
+}
+.svgMenu{
+    fill: whitesmoke !important;
+    margin: 0 10px 0 30px;
+}
+.arrow {
+    width: 20px;
+    margin-right: 5px;
+    color: whitesmoke;
+}
+.none {
+    display: none;
+}
+
+    /* Table article */
+
+main {
+    display: flex;
+}
+.secondSec {
+    width: 88%;
+}
+.tableArticle {
+    width: 75%;
+    margin: auto;
+    margin-top: 95px;
+}
+.tableArticle td {
+    border-bottom: rgb(102, 102, 102) 1px solid;
+    font-size: 1.1rem;
+}
+.tableArticle thead{
+    border: 1px solid rgb(102, 102, 102);
+    background-color:  rgb(43, 107, 245);
+    color: whitesmoke;
+}
+.tableArticle td, .tableArticle th {
+    padding: 13px 18px 13px 18px;
+}
+.tableArticle tr {
+    margin-top: 10px;
+}
+.paginat {
+    margin-top: 40px;
+    margin-left: 38%;
+}
+
+
+    /* Table categorie */
+
+.itemCate{
+    padding: 0 20px 15px 20px;
+    border: 2px solid rgb(102, 102, 102);
+    width: 40%;
+    margin: auto;
+    border-radius: 8px;
+}
+.wrap {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-content: center;
+    grid-gap: 50px;
+    width: 80%;
+    margin: auto;
+    margin-top: 90px;
+    margin-bottom: 70px;
+}
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+button {
+    width: 80%;
+    padding: 3px;
+    margin: auto;
+    background-color: white;
+    border: 1px solid rgb(35, 211, 0);
+    color: rgb(35, 211, 0);
+    border-radius: 5px;
+}
+input {
+    text-align: center;
+}
+label {
+    background-color: rgb(65, 123, 250);
+    color: whitesmoke;
+    width: 119%;
+    padding-top: 20px;
+    padding: 10px;
+    text-align: center;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+}
