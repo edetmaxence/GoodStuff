@@ -1558,7 +1558,7 @@
             "autoload": {
                 "psr-4": {
                     "Faker\\": "src/Faker/"
-                    "Imagine\\": "src/"
+                    // "Imagine\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1582,7 +1582,7 @@
             },
             "abandoned": true,
             "time": "2015-05-29T06:29:14+00:00"
-                    "name": "Bulat Shakirzyanov",
+                    // "name": "Bulat Shakirzyanov",
                     "email": "mallluhuct@gmail.com",
                     "homepage": "http://avalanche123.com"
                 }

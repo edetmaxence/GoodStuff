@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ouvrir un compte{% endblock %}
+{% block stylesheets %}
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+{% endblock %}
+{% block body %}
+    <div class="container">
+        <h2>Créez votre compte</h2>
+        <input type="text" placeholder="Prénom" required>
+        <input type="text" placeholder="Nom" required>
+        <input type="email" placeholder="Email" required>
+        <input type="password" placeholder="Mot de passe" required>
+        <input type="password" placeholder="Confirmez le mot de passe" required>
+        <input type="submit" value="se connecter" >
+{{ form_row(registrationForm.agreeTerms) }}
+   
+    </div>
+    
+{% endblock %}
