@@ -9,14 +9,14 @@ body {
     overflow: hidden;
 }
 header {
-    background-color: rgb(20, 91, 245);
+    background-color: rgb(38, 103, 245);
     padding: 3px 10px 3px 10px;
 }
 h1 {
     font-size: 1.7rem;
     padding: 3px;
+    color: whitesmoke;
 }
-
 .firstSec {
     background-color: rgb(48, 48, 48);
     height: 100vh;
@@ -50,9 +50,90 @@ h1 {
     margin-right: 5px;
     color: whitesmoke;
 }
+.none {
+    display: none;
+}
+
+    /* Table article */
+
 main {
     display: flex;
 }
 .secondSec {
+    width: 88%;
+}
+.tableArticle {
+    width: 75%;
+    margin: auto;
+    margin-top: 95px;
+}
+.tableArticle td {
+    border-bottom: rgb(102, 102, 102) 1px solid;
+    font-size: 1.1rem;
+}
+.tableArticle thead{
+    border: 1px solid rgb(102, 102, 102);
+    background-color:  rgb(43, 107, 245);
+    color: whitesmoke;
+}
+.tableArticle td, .tableArticle th {
+    padding: 13px 18px 13px 18px;
+}
+.tableArticle tr {
+    margin-top: 10px;
+}
+.paginat {
+    margin-top: 40px;
+    margin-left: 38%;
+}
 
+
+    /* Table categorie */
+
+.itemCate{
+    padding: 0 20px 15px 20px;
+    border: 2px solid rgb(102, 102, 102);
+    width: 40%;
+    margin: auto;
+    border-radius: 8px;
+}
+.wrap {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-content: center;
+    grid-gap: 50px;
+    width: 80%;
+    margin: auto;
+    margin-top: 90px;
+    margin-bottom: 70px;
+}
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+button {
+    width: 80%;
+    padding: 3px;
+    margin: auto;
+    background-color: white;
+    border: 1px solid rgb(35, 211, 0);
+    color: rgb(35, 211, 0);
+    border-radius: 5px;
+}
+input {
+    text-align: center;
+}
+label {
+    background-color: rgb(65, 123, 250);
+    color: whitesmoke;
+    width: 119%;
+    padding-top: 20px;
+    padding: 10px;
+    text-align: center;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
 }

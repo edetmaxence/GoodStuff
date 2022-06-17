@@ -49,6 +49,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $city;
 
+   
+
+
+
+
     public function __construct()
     {
         $this->articles = new ArrayCollection();

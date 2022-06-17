@@ -5,52 +5,51 @@
 
 
 {% block body %}
+<div id="article">
+    <table class="tableArticle">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Titre</th>
+                <th>Description</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for article in articles %}
+                <tr>
+                    <td>{{article.title}}</td>
+                    <td>{{article.description|u.truncate(110)}}</td>
+                    <td>
+                        <a href="">Editer</a>
+                        <a href="">Supprimer</a>
+                    </td>
+                    <td></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="paginat">
+        <p>{{ knp_pagination_render(articles) }}</p>
+    </div>
+</div>
 
+<!-- categorie -->
 
-	<table class='table'>
-		<thead>
-			<tr>
-				<th>title</th>
-				<th>description</th>
-				<th>gens</th>
-				<th>ville</th>
-				<th>prix</th>
-				<th>Creer le</th>
-			</tr>
-		</thead>
-
-		<tbody>
-
-			<a class="btn btn-secondary" type="button" href="{{ path('newArticle') }}">New</a>
-
-
-			{% for article in articles %}
-
-				<tr>
-					<td>
-						<a href="{{ path('detailArticle', {id: article.id })}}">{{ article.title }}
-						</a>
-					</td>
-					<td>{{ article.description }}</td>
-					<td>{{ article.owner.firstname }}</td>
-					<td>{{ article.owner.city }}</td>
-					<td>{{ article.prix }}</td>
-					<td>{{ article.createdAt| date('d-m-Y') }}</td>
-					<td>
-						<a class="btn btn-secondary" type="button" href="{{ path('editArticle', {id: article.id }) }}">Edit</a>
-
-						<form action="{{ path('deleteArticle' , {id: article.id })}}" method="POST">
-							<input type="hidden" name="token" value="{{ csrf_token('deletearticle-'~ article.id )}}">
-							<button class="btn btn-danger" type="submit">Delete</button>
-						</form>
-					</td>
-
-				</tr>
-
-
-			{% endfor %}
-		</tbody>
-	</table>
-
-
+<div class="none" id="category">
+    <div class="wrap">
+        {% for category in categories %}
+            <div class="itemCate">
+                <form action="" method="post">
+                    <label for="title">Nom Categorie</label>
+                    <input type="text" name="title" id="title" value="{{ category.name }}">
+                    <button>Valider Changement</button>
+                </form>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="paginat">
+        <p>{{ knp_pagination_render(categories) }}</p>
+    </div>
+</div>
 {% endblock %}
