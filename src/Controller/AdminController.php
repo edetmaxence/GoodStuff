@@ -13,19 +13,18 @@ use Knp\Component\Pager\PaginatorInterface;
 
 class AdminController extends AbstractController
 {
-    #[Route('/', name: 'app_admin')]
+    #[Route('/admin', name: 'app_admin')]
     public function index(CategoryRepository $categoryRepository, ArticleRepository $articleRepository, Request $request, PaginatorInterface $paginatorInterface ): Response
     {   
         $articles = $paginatorInterface->paginate(
             $articleRepository->findAll(),
-            $request->query->getInt('page', 1),
-            8
+            $request->query->getInt('page', 1),1
         );
 
         $categories = $paginatorInterface->paginate(
             $categoryRepository->findAll(),
-            $request->query->getInt('page', 1),
-            6
+            $request->query->getInt('page', 1),1
+            
         );
 
         return $this->render('admin/index.html.twig', [
