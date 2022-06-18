@@ -34,8 +34,8 @@
 		<table class="table-light">
 			<tr>
 				<th>
-                    Annonce
-                </th>
+					Annonce
+				</th>
 				<th>
 					{# Demander à utilisateur de completer ses donnée #}
 					<a href="" class=" btn btn-outline-warning">
@@ -43,10 +43,17 @@
 					</a>
 				</th>
 				<th>
-					{# Demander à utilisateur de completer ses donnée #}
-					<a href="" class=" btn btn-outline-warning">
-						Supprimer
+					{# Voir annonce de l'utilisateur #}
+					<a class="text-decoration-none" href="{{ path('detailArticle', {id: article.id })}}">
+						{{ article.title }}
 					</a>
+					<a href="" class=" btn btn-outline-warning">
+						Voir mon annonce
+					</a>
+					{# <form action="{{ path('deleteArticle' , {id: article.id })}}" method="POST">
+											<input type="hidden" name="token" value="{{ csrf_token('deletearticle-'~ article.id )}}">
+											<button class="btn btn-danger" type="submit">Delete</button>
+										</form> #}
 				</th>
 			</tr>
 		</table>

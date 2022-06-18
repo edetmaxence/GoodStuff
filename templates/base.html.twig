@@ -1,47 +1,79 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <!-- CSS only -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}GoodStuff
+			{% endblock %}
+		</title>
+		<!-- CSS only -->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-        {% block stylesheets %}
-           {{ encore_entry_link_tags('app') }}
-             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-        {% endblock %}
+		<link
+		rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+		{# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+		{% block stylesheets %}
+			{{ encore_entry_link_tags('app') }}
+			<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+		{% endblock %}
 
-        {% block javascripts %}
-         
-          {{ encore_entry_script_tags('app') }}
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-        {% endblock %}
-    </head>
-    <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		{% block javascripts %}
+
+			{{ encore_entry_script_tags('app') }}
+			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+		{% endblock %}
+	</head>
+	<body>
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
 			<div class="container-fluid">
-				<a class="navbar-brand" href="#">Navbar</a>
-				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+				<a class="navbar-brand" href="{{ path('app_home') }}"><span class="text-primary">GoodStuff</span></a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
-				<div class="collapse navbar-collapse" id="navbarNav">
-					<ul class="navbar-nav">
-
-
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 						<li class="nav-item">
-							<a class="nav-link" href="{{path ('app_home')}}">Home</a>
-							<a class="nav-link" href="{{path ('app_category')}}">Categories</a>
-							
+							<a class="nav-link" href="{{ path('app_home') }}">Accueil</a>
 						</li>
-						
+						{# {% if is_granted('ROLE_USER') %} #}
+						<li class="nav-item">
+							<a class="nav-link" type="button" href="{{ path('newArticle') }}">Deposér annonce</a>
+						</li>
+						{# {% endif %} #}
+						<li class="nav-item">
+							<a class="nav-link" href="{{ path('app_category') }}">Catégories</a>
+						</li>
+						<li class="nav-item d-flex align-items-center px-2 my-2">
+							<div class="vr text-white"></div>
+						</li>
+						{% if app.user is not null %}
+							<li class="nav-item">
+								<a class="nav-link" href="{{ path('app_account') }}">Bonjour
+									{{ app.user.userIdentifier }}</a>
+							</li>
+							{% if is_granted('ROLE_ADMIN') %}
+								<li class="nav-item">
+									<a class="nav-link text-warning" href="{{ path('app_admin') }}">Administrator</a>
+								</li>
+							{% endif %}
+							<li class="nav-item">
+								<a class="nav-link text-warning" href="{{ path('app_logout') }}">Se déconnecter</a>
+							</li>
+						{% else %}
+							<li class="nav-item">
+								<a class="nav-link" href="{{ path('app_login') }}">Se connecter</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="{{ path('app_register') }}">Ouvrir un compte</a>
+							</li>
+						{% endif %}
+						<form class="d-flex" role="search">
+							<input class="form-control me-2" type="Rechercher" placeholder="Rechercher" aria-label="Rechercher">
+						</form>
 					</ul>
 				</div>
 			</div>
-		</nav>
-    <div class="container py-5">
-        {% block body %}{% endblock %}
-    </div
-    </body>
-</html>
+		</div>
+	</body>
+</html></nav><div class="container py-5"> {% block body %}{% endblock %}
+</div</body></body></html>
