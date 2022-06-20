@@ -5,6 +5,9 @@
     padding: 0;
     font-size: 16px;
 }
+p {
+    margin-bottom: 0;
+}
 body {
     overflow: hidden;
 }
@@ -26,17 +29,23 @@ h1 {
     display: flex;
     flex-direction: column;
 }
+.menu a {
+    text-decoration: none;
+    color: whitesmoke;
+}
 .menu a:hover {
     color: rgb(175, 175, 175);
 }
 .itemMenu {
     display: flex;
     flex-direction: row;
-    padding: 13px 0 13px 0;
+    padding: 18px 0 0 0;
     text-decoration: none;
     color: whitesmoke;
     text-align: center;
     cursor: pointer;
+    display: flex;
+    flex-direction: column;
 }
 .itemMenu p {
     margin: 0;
@@ -53,7 +62,12 @@ h1 {
     margin-right: 5px;
     color: whitesmoke;
 }
-
+.test {
+    display: flex;
+}
+.test p {
+    padding-bottom: 15px;
+}
     /* Table article */
 
 main {
@@ -79,6 +93,7 @@ main {
 }
 .tableArticle td, .tableArticle th {
     padding: 13px 18px 13px 18px;
+    text-align: center;
 }
 .tableArticle tr {
     margin-top: 10px;
@@ -87,54 +102,141 @@ main {
     margin-top: 40px;
     margin-left: 38%;
 }
-
-
+.action {
+    display: flex;
+    gap: 40px;
+}
+.btnEdit {
+    text-decoration: none;
+    border: 1px solid #00a000;
+    padding: 2px 15px 0px;
+    border-radius: 5px;
+    color: #00a000;
+    font-size: 15px;
+}
+.btnEdit:hover {
+    background-color: #00a000;
+    color: white;
+}
+.editHover {
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+}
+.editHover svg {
+    fill: whitesmoke !important;
+}
+.editHover p {
+    margin-left: 20px;
+}
+.editMenu {
+    display: flex;
+    margin-bottom: 5px;
+}
     /* Table categorie */
 
-.itemCate{
-    padding: 0 20px 15px 20px;
-    border: 2px solid rgb(102, 102, 102);
-    width: 40%;
-    margin: auto;
-    border-radius: 8px;
-}
-.wrap {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    align-content: center;
-    grid-gap: 50px;
+.cate {
     width: 80%;
+    margin: auto;
+    margin-top: 150px;
+}
+.tableCate {
+    width: 60%;
+    margin: auto;
+    margin-top: 95px;
+}
+.tableCate td{
+    border-bottom: rgb(102, 102, 102) 1px solid;
+    font-size: 1.1rem;
+}
+.tableCate thead{
+    border: 1px solid rgb(102, 102, 102);
+    background-color:  rgb(43, 107, 245);
+    color: whitesmoke;
+}
+.tableCate td, .tableCate th {
+    padding: 13px 10px 13px 10px;
+    text-align: center;
+}
+.tableCate tr {
+    margin-top: 10px;
+}
+.edit{
+    width: 75%;
     margin: auto;
     margin-top: 90px;
-    margin-bottom: 70px;
+    display: flex;
+    gap: 120px;
 }
-form {
+.formLeft, .formRight {
+    width: 45%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 30px;
+    gap: 10px;
 }
-
-button {
-    width: 80%;
-    padding: 3px;
-    margin: auto;
-    background-color: white;
-    border: 1px solid rgb(35, 211, 0);
-    color: rgb(35, 211, 0);
+.editButton {
+    width: 100%;
+}
+.formItem{
+    margin-top: 5px;
+}
+.btnEditCate {
+    text-decoration: none;
+    border: 1px solid #00a000;
     border-radius: 5px;
+    color: #00a000;
+    font-size: 15px;
+    padding: 4px 15px;
 }
-input {
+.btnEditCate:hover {
+    background-color: #00a000;
+    color: white;
+}
+    /* Table Users */
+
+.users {
+    width: 80%;
+    margin: auto;
+    margin-top: 150px;
+}
+.tableUsers {
+    width: 65%;
+    margin: auto;
+    margin-top: 95px;
+}
+.tableUsers td{
+    border-bottom: rgb(102, 102, 102) 1px solid;
+    font-size: 1.1rem;
     text-align: center;
 }
-label {
-    background-color: rgb(65, 123, 250);
+.tableUsers thead{
+    border: 1px solid rgb(102, 102, 102);
+    background-color:  rgb(43, 107, 245);
     color: whitesmoke;
-    width: 119%;
-    padding-top: 20px;
-    padding: 10px;
+}
+.tableUsers td, .tableUsers th {
+    padding: 13px 18px 13px 18px;
     text-align: center;
-    border-top-left-radius: 7px;
-    border-top-right-radius: 7px;
+}
+.tableUsers tr {
+    margin-top: 10px;
+}
+.btnEditProfil {
+    text-decoration: none;
+    border: 1px solid #00a000;
+    border-radius: 5px;
+    color: #00a000;
+    font-size: 15px;
+    padding: 3px 15px;
+}
+.btnEditProfil:hover {
+    background-color: #00a000;
+    color: white;
+}
+.adminChange {
+    display: flex;
+    justify-content: space-evenly;
+}
+.adminChange a {
+    width: 15%;
 }

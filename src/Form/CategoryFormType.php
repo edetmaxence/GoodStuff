@@ -16,7 +16,8 @@ class CategoryFormType extends AbstractType
         $builder
             ->add('name',  TextType::class, [
                 'label' => 'Nom de la catégorie', // label sur formulaire + champs
-                'required' => false])
+                'required' => false
+                ])
 
             ->add('article', SubmitType::class, [
                 'label' => 'Enregistrer'])         // label sur formulaire + champs    
