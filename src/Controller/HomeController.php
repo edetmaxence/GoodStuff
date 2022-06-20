@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Article;
+use App\Entity\Category;
 use App\Form\ArticleFormType;
 use App\Repository\ArticleRepository;
+use App\Repository\CategoryRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,12 +16,19 @@ use Symfony\Component\Routing\Annotation\Route;
 class HomeController extends AbstractController
 {
     #[Route('/', name: 'app_home')]
-    public function index(ArticleRepository $articleRepository): Response
+    public function index(ArticleRepository $articleRepository, CategoryRepository $categoryRepository, Request $request): Response
     {
-        $articles= $articleRepository->findAll();
-        // dd($articles);
+        $categories = $categoryRepository->findAll();
+        $articles= $articleRepository->findAll();           
+
+        $id = $request->query->get("id");
+
+        if ($id) {
+            $articles = $articleRepository->findBy(['category' => $id]);
+        }
         return $this->render('home/index.html.twig', [
-            'articles'=>$articles
+            'articles'=>$articles,
+            'categories' => $categories,
         ]);
     }
 
@@ -86,6 +95,4 @@ class HomeController extends AbstractController
             'article'=> $article,
         ]);
     }
-
-
 }
