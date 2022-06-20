@@ -1,15 +1,15 @@
 
 
 body {
-    background-image: url(https://images.unsplash.com/photo-1648803336451-d882ce46e68c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80);
-    background-size: cover;
+    background-color: white;
+    
 }
 
 .container {
     
     max-width: 380px;
     margin: auto;
-    background-color: rgba(0,0,0,0.8);
+    background-color: rgba(0,0,0,0.4);
     text-align: center;
     border-radius: 20px;
     padding: 40px;

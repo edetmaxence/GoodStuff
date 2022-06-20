@@ -1,14 +1,15 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Ajout d'un nouvel article{% endblock %}
-
+{% block stylesheets %}
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+{% endblock %}
 {% block body %}
     
-    <div class="w-50 mx-auto py-5">
-       
-
-        {{ form(form) }}
-        
+    
+  <link href="{{ asset('css/newarticle.css') }}" rel="stylesheet">
+    <div class="new">
+       {{ form(form) }}
     </div>
-
+    
 {% endblock %}
