@@ -20,7 +20,7 @@ class HomeController extends AbstractController
     {
         $categories = $categoryRepository->findAll();
         $articles= $articleRepository->findAll();           
-
+        
         $id = $request->query->get("id");
 
         if ($id) {

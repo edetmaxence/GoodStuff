@@ -1,16 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!
-{% endblock %}
+{% block title %}Hello HomeController!{% endblock %}
 
 {% block body %}
-	
 <form method="GET">
 	<select onchange="this.form.submit()" name="id" id"idCat" class="form-select" aria-label="Default select example">
-	<option value="o" title="Categorie">Toutes les Categories</option>
+	
+	<option value="0" title="Categorie">Toutes les Categories</option>
 				{% for categorie in categories %}
 				
-				<option value="{{ categorie.id }}" title="Categorie">{{ categorie.name }}</option> 					
+				<option selected value="{{ categorie.id }}" title="Categorie">{{ categorie.name }}</option> 					
 	{% endfor %}						
 </select>
 </form>	
@@ -62,3 +61,4 @@
 
 
 {% endblock %}
+
