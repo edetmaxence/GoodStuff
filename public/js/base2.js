@@ -1,30 +1,27 @@
-const item1 = document.getElementById('item1')
-const item2 = document.getElementById('item2')
-const item3 = document.getElementById('item3')
-
-const category = document.getElementById('category')
-const article = document.getElementById('article')
+const annonce = document.getElementById('annonce')
+const categorie = document.getElementById('categorie')
+const user = document.getElementById('user')
+const edit = document.getElementById('edit')
 
 
-item1.addEventListener('click', function() {
-    item2.classList.remove('now')
-    item3.classList.remove('now')
-    item1.classList.add('now')
-    article.classList.remove('none')
-    category.classList.add('none')
+annonce.addEventListener('click', function() {
+    categorie.classList.remove('now')
+    user.classList.remove('now')
+    annonce.classList.add('now')
+    edit.classList.remove('now')
 
 })
 
-item2.addEventListener('click', function() {
-    item1.classList.remove('now')
-    item3.classList.remove('now')
-    item2.classList.add('now')
-    article.classList.add('none')
-    category.classList.remove('none')
+categorie.addEventListener('click', function() {
+    annonce.classList.remove('now')
+    user.classList.remove('now')
+    categorie.classList.add('now')
+    edit.classList.remove('now')
 })
 
-item3.addEventListener('click', function() {
-    item2.classList.remove('now')
-    item1.classList.remove('now')
-    item3.classList.add('now')
+user.addEventListener('click', function() {
+    categorie.classList.remove('now')
+    annonce.classList.remove('now')
+    user.classList.add('now')
+    edit.classList.remove('now')
 })

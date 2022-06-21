@@ -28,7 +28,8 @@ class ArticleFormType extends AbstractType
             ])
             ->add('description', TextareaType::class, [
                 'label' => 'Description',
-                'required' => False
+                'required' => False,
+                'attr' => ['rows' => 5]
             ])
             
             ->add('created_at', DateType::class, [
@@ -61,7 +62,8 @@ class ArticleFormType extends AbstractType
                 'required' => False
             ])
             ->add('save', SubmitType::class, [
-                'label' => 'Enregistrer '
+                'label' => 'Enregistrer ',
+                'attr' => ['class' => 'btn btn-sm btn-primary editButton']
             ])
         ;
     }

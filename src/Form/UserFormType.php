@@ -30,7 +30,7 @@ class UserFormType extends AbstractType
                     ])
                 ]
             ])
-            ->add('password', PasswordType::class, [
+           /*  ->add('password', PasswordType::class, [
                 'mapped' => false,
                 'attr' => ['autocomplete' => 'new-password'],
                 'constraints' => [
@@ -43,7 +43,7 @@ class UserFormType extends AbstractType
                         'max' => 4096,
                     ]),
                 ]
-            ])
+            ]) */
             ->add('lastname', TextType::class, [
                 'label' => 'Nom',
                 'required' => true
@@ -58,6 +58,10 @@ class UserFormType extends AbstractType
             ->add('city', TextType::class, [
                 'label' => 'Ville',
                 'required' => true
+            ])
+            ->add('phonenumber', TextType::class, [
+                'label' => 'Téléphone',
+                'required' => false
             ])
             ->add('phonenumber', TextType::class, [
                 'label' => 'Téléphone',

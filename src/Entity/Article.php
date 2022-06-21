@@ -4,8 +4,6 @@ namespace App\Entity;
 
 use App\Repository\ArticleRepository;
 use Doctrine\ORM\Mapping as ORM;
-
-
 use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\HttpFoundation\File\File;
@@ -29,6 +27,7 @@ class Article
     private $created_at;
 
     #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'articles')]
+    #[ORM\JoinColumn(nullable: false)]
     private $category;
 
   
@@ -36,7 +35,7 @@ class Article
     #[ORM\Column(type: 'integer')]
     private $prix;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $cover;
 
     #[Vich\UploadableField(mapping: 'articles', fileNameProperty: 'cover' )]

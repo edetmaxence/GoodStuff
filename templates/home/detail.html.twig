@@ -1,13 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!
+{% block title %}Annonce
 {% endblock %}
 
 
 {% block body %}
 	<div class="text-center">
-
-
+	
 		<h2>
 			{{ article.title }}</h2>
 		<h3> {{ article.description }}</h3>
@@ -17,7 +16,7 @@
 			{% endif %}
 		</div>
 
-		auteur : {{ article.owner.firstname }}
+		Auteur : {{ article.owner.firstname }}
 
 	</div>
 {% endblock %}

@@ -48,7 +48,7 @@ class CategoryController extends AbstractController
     public function edit(Category $category, Request $request, CategoryRepository $categoryRepository): Response 
     {
         $form = $this->createForm(CategoryFormType::class, $category);
-        $form->handleRequest($request);
+        $form->handleRequest($request); 
 
         if ($form->isSubmitted() && $form->isValid()) {
             $categoryRepository->add($category, true);
