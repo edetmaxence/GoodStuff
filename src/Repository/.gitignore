@@ -1,2 +1,7 @@
 .env
 *.lock
+
+
+/svg
+/images/articles
+/media/cache/vignette/images/articles

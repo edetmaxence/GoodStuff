@@ -4,7 +4,16 @@
 {% endblock %}
 
 {% block body %}
-
+	<form method="GET">
+		<select onchange="this.form.submit();" id="id" name="id" class="form-select" aria-label="Default select example">
+		<option selected value="0">Toutes les catégories</option>
+			{% for categorie in categories %}
+		
+				<option selected value="{{ categorie.id }}" >{{ categorie.name }}</option>
+			{% endfor %}
+		</select>
+	</form>
+	
 
 	<table class='table'>
 		<thead>

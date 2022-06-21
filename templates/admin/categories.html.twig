@@ -1,19 +1,18 @@
 
 {% extends 'base2.html.twig' %}
 
-{% block title %}GoodStuff Admin{% endblock %}
-
+{% block title %}GoodStuff{% endblock %}
 
 {% block body %}
 <section class="firstSec">
     <div class="menu">
-        <a href="{{ path('app_admin') }}" class="itemMenu now" id="annonce">
+        <a href="{{ path('app_admin') }}" class="itemMenu" id="annonce">
             <div class="test">
                 <svg class="svgMenu" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M12 16 16 12 12 8 10.6 9.4 12.2 11H8V13H12.2L10.6 14.6ZM12 22Q9.925 22 8.1 21.212Q6.275 20.425 4.925 19.075Q3.575 17.725 2.788 15.9Q2 14.075 2 12Q2 9.925 2.788 8.1Q3.575 6.275 4.925 4.925Q6.275 3.575 8.1 2.787Q9.925 2 12 2Q14.075 2 15.9 2.787Q17.725 3.575 19.075 4.925Q20.425 6.275 21.212 8.1Q22 9.925 22 12Q22 14.075 21.212 15.9Q20.425 17.725 19.075 19.075Q17.725 20.425 15.9 21.212Q14.075 22 12 22ZM12 20Q15.325 20 17.663 17.663Q20 15.325 20 12Q20 8.675 17.663 6.337Q15.325 4 12 4Q8.675 4 6.338 6.337Q4 8.675 4 12Q4 15.325 6.338 17.663Q8.675 20 12 20ZM12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Z"/></svg>
                 <p>Annonces</p>
             </div>
         </a>
-        <a href="{{  path('app_admin_category') }}" class="itemMenu" id="categorie">
+        <a href="{{  path('app_admin_category') }}" class="itemMenu now" id="categorie">
             <div class="test">
                 <svg class="svgMenu" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M12 16 16 12 12 8 10.6 9.4 12.2 11H8V13H12.2L10.6 14.6ZM12 22Q9.925 22 8.1 21.212Q6.275 20.425 4.925 19.075Q3.575 17.725 2.788 15.9Q2 14.075 2 12Q2 9.925 2.788 8.1Q3.575 6.275 4.925 4.925Q6.275 3.575 8.1 2.787Q9.925 2 12 2Q14.075 2 15.9 2.787Q17.725 3.575 19.075 4.925Q20.425 6.275 21.212 8.1Q22 9.925 22 12Q22 14.075 21.212 15.9Q20.425 17.725 19.075 19.075Q17.725 20.425 15.9 21.212Q14.075 22 12 22ZM12 20Q15.325 20 17.663 17.663Q20 15.325 20 12Q20 8.675 17.663 6.337Q15.325 4 12 4Q8.675 4 6.338 6.337Q4 8.675 4 12Q4 15.325 6.338 17.663Q8.675 20 12 20ZM12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Z"/></svg>
                 <p>Catégories</p>
@@ -28,39 +27,33 @@
     </div>
 </section>
 <section class="secondSec">
-    {% if success %}
-        <p>L'article a bien été supprimé</p>
-    {% endif %}
-    <a href="{{ path('app_admin_article_add') }}" class="addArticle">Ajouter un Article</a>
-    <div id="article">
-        <table class="tableArticle">
+    <div class="cate">
+        <table class="tableCate">
             <thead>
                 <tr>
-                    <th>Image</th>
-                    <th>Titre</th>
-                    <th>Description</th>
-                    <th>Action</th>
+                    <th>Catégories</th>
+                    <th>Modifier</th>
+                    <th>Supprimer</th>
                 </tr>
             </thead>
             <tbody>
-                {% for article in articles %}
-                    <tr>
-                        <td><img src="images/articles/{{ article.cover }}" alt="" width="50px"></td>
-                        <td>{{ article.title }}</td>
-                        <td>{{ article.description|u.truncate(90) }}</td>
-                        <td class="action">
-                            <a href="{{ path('app_admin_article_edit', { id: article.id }) }}" class="btnEdit">Editer</a>
-                            <form action="{{ path('app_admin_article_delete', { id: article.id }) }}" method="post">
-                                <input type="hidden" name="token" value="{{ csrf_token('delete-article-'~ article.id) }}">
-                                <button class="btn btn-sm btn-outline-danger">Supprimer</button>
-                            </form> 
-                        </td>
-                    </tr>
-                {% endfor %}
+            {% for category in categories %}
+                <tr>
+                    <td><span id="{{ category.id }}">{{ category.name }}</span></td>
+                    <td>
+                        <a href="{{ path('app_admin_category_edit',{ id: category.id } ) }}" title="Editer cette catégorie" class="btnEditCate">Editer</a>
+                    </td>
+                    <td><form action="{{ path('app_admin_category_delete', { id: category.id } ) }}" method="post">
+                        <input type="hidden" name="token" value="{{ csrf_token('delete-category-'~ category.id) }}">
+                        <button class="btn btn-sm btn-outline-danger">Supprimer</button>
+                    </form> </td>
+                    
+                </tr>
+            {% endfor %}
             </tbody>
         </table>
         <div class="paginat">
-            <p>{{ knp_pagination_render(articles) }}</p>
+            <p>{{ knp_pagination_render(categories) }}</p>
         </div>
     </div>
 </section>

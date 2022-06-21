@@ -63,6 +63,10 @@ class UserFormType extends AbstractType
                 'label' => 'Téléphone',
                 'required' => false
             ])
+            ->add('phonenumber', TextType::class, [
+                'label' => 'Téléphone',
+                'required' => false
+            ])
             ->add('save', SubmitType::class, [
                 'label' => 'Enregistrer'
             ])
