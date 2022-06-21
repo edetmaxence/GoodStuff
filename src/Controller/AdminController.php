@@ -23,14 +23,31 @@ use Symfony\Component\HttpFoundation\RequestStack;
 
 class AdminController extends AbstractController
 {
+<<<<<<< HEAD
     #[Route('/admin', name: 'app_admin')]
     public function index(CategoryRepository $categoryRepository, ArticleRepository $articleRepository, Request $request, PaginatorInterface $paginatorInterface ): Response
+=======
+    private $requestStack;
+
+    public function __construct(RequestStack $requestStack)
+    {
+        $this->requestStack = $requestStack;
+    }
+    
+    #[Route('/admin', name: 'app_admin')]
+    public function index(ArticleRepository $articleRepository, Request $request, PaginatorInterface $paginatorInterface ): Response
+>>>>>>> 4347447a9fa18299278990306228c6d03f144747
     {   
         $success = $request->query->get('success');
 
         $articles = $paginatorInterface->paginate(
             $articleRepository->findAll(),
+<<<<<<< HEAD
             $request->query->getInt('page', 1),1
+=======
+            $request->query->getInt('page', 1),
+            7
+>>>>>>> 4347447a9fa18299278990306228c6d03f144747
         );
 
         return $this->render('admin/index.html.twig', [
@@ -40,28 +57,21 @@ class AdminController extends AbstractController
     }
 
     #[Route('/admin/categorie', name: 'app_admin_category')]
-    public function categorie(Category $category, CategoryRepository $categoryRepository, Request $request, PaginatorInterface $paginatorInterface ): Response
+    public function categorie(CategoryRepository $categoryRepository, Request $request, PaginatorInterface $paginatorInterface ): Response
     {   
         $categories = $paginatorInterface->paginate(
             $categoryRepository->findAll(),
+<<<<<<< HEAD
             $request->query->getInt('page', 1),1
             
+=======
+            $request->query->getInt('page', 1),
+            8
+>>>>>>> 4347447a9fa18299278990306228c6d03f144747
         );
 
-        $form = $this->createForm(CategoryFormType::class, $category);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $categoryRepository->add($category, true);
-            $this->addFlash('success', 'La catégorie à bien été modifier');
-
-            // Redirection vers une autre page
-            return $this->redirectToRoute('app_admin_category');
-        }
-
         return $this->render('admin/categories.html.twig', [
-            'categories' => $categories,
-            'form' => $form->createView() 
+            'categories' => $categories
         ]);
     }
 
@@ -149,27 +159,6 @@ class AdminController extends AbstractController
         ]);
     }
 
-    #[Route('/admin/users/edit/{id}', name:'app_admin_user_edit', requirements: ['id' => '\d+'])]
-    public function editUsers(User $user, Request $request, UserRepository $userRepository): Response
-    {   
-        $id = $request->get('id');
-        $form = $this->createForm(UserFormType::class, $user);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $userRepository->add($user, true);
-            $this->addFlash('success', 'L\'utilisateur à bien été modifier');
-
-            // Redirection vers une autre page
-            return $this->redirectToRoute('app_admin_users');
-        }
-
-        return $this->render('admin/editUsers.html.twig', [
-            'form' => $form->createView(),
-            'id' => $id
-        ]);
-    }
-
     #[Route('/admin/users/edit/{id}/{role}', name: 'app_admin_user_role', methods: ['POST'])]
     public function roles(User $user, string $role, UserRepository $userRepository, ): JsonResponse{
        
@@ -177,5 +166,15 @@ class AdminController extends AbstractController
         $userRepository->add($user, true);
 
         return $this->json(['role' => $role]);
+    }
+
+    #[Route('/admin/article/add', name: 'app_admin_article_add')]
+    public function addArticle( ): Response{
+       
+
+
+        return $this->render('admin/addArticle.html.twig', [
+            
+        ]);
     }
 }

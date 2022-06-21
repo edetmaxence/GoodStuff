@@ -31,6 +31,7 @@
     {% if success %}
         <p>L'article a bien été supprimé</p>
     {% endif %}
+    <a href="{{ path('app_admin_article_add') }}" class="addArticle">Ajouter un Article</a>
     <div id="article">
         <table class="tableArticle">
             <thead>
