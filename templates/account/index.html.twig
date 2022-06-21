@@ -6,12 +6,16 @@
 	
 {% block body %}
 
-	<div class="container w-50 py-4">
-
+	
+ {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
 		<div class="d-flex align-items-center justify-content-between">
 			<h3>Bienvenue
 				<span class="text-primary text-capitalize">
-					{{ app.user.lastname }}
+					{{ app.user.userIdentifier }}
 				</span>
 			</h3>
 
@@ -81,7 +85,7 @@
 		</table>
 
 
-	</div>
+	
 
 
 {% endblock %}
