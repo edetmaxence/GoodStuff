@@ -10,7 +10,7 @@
 {% endblock %}
 
 {% block body %}
-<section class="firstSec">
+<section class="firstSec" id="menuLeft">
     <div class="menu">
         <a href="{{ path('app_admin') }}" class="itemMenu" id="annonce">
             <div class="test">
@@ -32,12 +32,12 @@
         </a>
     </div>
 </section>
-<section class="secondSec">
+<section class="secondSec" id="secondSec">
     <div id="users">
         <table class="tableUsers">
             <thead>
                 <tr>
-                    <th>Nom</th>
+                    <th class="td">Nom</th>
                     <th>Email</th>
                     <th>Role</th>
                     <th>Action</th>
@@ -46,9 +46,15 @@
             <tbody>
                 {% for user in users %}
                     <tr>
-                        <td>{{user.firstname}}</td>
+                        <td class="td">{{user.firstname}}</td>
                         <td>{{user.email}}</td>
-                        <td id="roles_{{ user.id }}" >{{user.roles[0]}}</td>
+                        <td id="roles_{{ user.id }}" >
+                            {% if user.roles[0] == "ROLE_ADMIN" %}
+                                {{ "ADMIN" }}
+                            {% else %}
+                                {{ "USER" }}
+                            {% endif %}
+                        </td>
                         <td class="adminChange">
                             <a data-id="{{ user.id }}" data-role="ROLE_ADMIN" class="btn btn-outline-danger btn-sm role">Admin</a>
                             <a data-id="{{ user.id }}" data-role="ROLE_USER" class="btn btn-outline-success btn-sm role">Users</a>
@@ -57,7 +63,7 @@
                 {% endfor %}
             </tbody>
         </table>
-        <div class="paginat">
+        <div class="paginatUser">
             <p>{{ knp_pagination_render(users) }}</p>
         </div>
     </div>

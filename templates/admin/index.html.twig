@@ -5,7 +5,7 @@
 
 
 {% block body %}
-<section class="firstSec">
+<section class="firstSec d-block" id="menuLeft">
     <div class="menu">
         <a href="{{ path('app_admin') }}" class="itemMenu now" id="annonce">
             <div class="test">
@@ -27,7 +27,7 @@
         </a>
     </div>
 </section>
-<section class="secondSec">
+<section class="secondSec" id="secondSec">
     {% if success %}
         <p>L'article a bien été supprimé</p>
     {% endif %}
@@ -46,13 +46,15 @@
                     <tr>
                         <td class='imageArticle'><img src="images/articles/{{ article.cover }}" alt="" width="70px"></td>
                         <td>{{ article.title }}</td>
-                        <td>{{ article.description|u.truncate(90) }}</td>
-                        <td class="action">
-                            <a href="{{ path('app_admin_article_edit', { id: article.id }) }}" class="btnEdit">Editer</a>
-                            <form action="{{ path('app_admin_article_delete', { id: article.id }) }}" method="post">
-                                <input type="hidden" name="token" value="{{ csrf_token('delete-article-'~ article.id) }}">
-                                <button class="btn btn-sm btn-outline-danger">Supprimer</button>
-                            </form> 
+                        <td>{{ article.description|u.truncate(30) }}</td>
+                        <td>
+                            <div class="action">
+                                <a href="{{ path('app_admin_article_edit', { id: article.id }) }}" class="btnEdit">Editer</a>
+                                <form action="{{ path('app_admin_article_delete', { id: article.id }) }}" method="post">
+                                    <input type="hidden" name="token" value="{{ csrf_token('delete-article-'~ article.id) }}">
+                                    <button class="btn btn-sm btn-outline-danger">Supprimer</button>
+                                </form> 
+                            </div>
                         </td>
                     </tr>
                 {% endfor %}

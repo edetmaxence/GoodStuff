@@ -23,12 +23,6 @@ use Symfony\Component\HttpFoundation\RequestStack;
 
 class AdminController extends AbstractController
 {
-    private $requestStack;
-
-    public function __construct(RequestStack $requestStack)
-    {
-        $this->requestStack = $requestStack;
-    }
     
     #[Route('/admin', name: 'app_admin')]
     public function index(ArticleRepository $articleRepository, Request $request, PaginatorInterface $paginatorInterface ): Response
@@ -67,7 +61,7 @@ class AdminController extends AbstractController
         $users = $paginatorInterface->paginate(
             $userRepository->findAll(),
             $request->query->getInt('page', 1),
-            8
+            10
         );
 
         return $this->render('admin/users.html.twig', [

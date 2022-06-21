@@ -2,7 +2,36 @@ const annonce = document.getElementById('annonce')
 const categorie = document.getElementById('categorie')
 const user = document.getElementById('user')
 const edit = document.getElementById('edit')
+const menu = document.getElementById('svg')
+const menuLeft = document.getElementById('menuLeft')
+const secondSec = document.getElementById('secondSec')
+const td = document.querySelectorAll('.td')
 
+
+if (screen.width < 425) {
+    menuLeft.classList.add('d-none')
+    td.forEach(element => {
+        element.classList.add('d-none')
+    });
+    
+}else {
+    menuLeft.classList.add('d-block')
+    menuLeft.classList.remove('d-none')
+}
+
+
+menu.addEventListener('click', function(){
+    if (menuLeft.classList.contains('d-block')) {
+        menuLeft.classList.remove('d-block')
+        menuLeft.classList.add('d-none')
+        
+        secondSec.classList.remove('d-none')
+    } else {
+        menuLeft.classList.add('d-block')
+        menuLeft.classList.remove('d-none')
+        secondSec.classList.add('d-none')
+    }
+})
 
 annonce.addEventListener('click', function() {
     categorie.classList.remove('now')
