@@ -1,5 +1,7 @@
 REad hvfy
-
+Installatiion de la barre de debug symfony :
+    composer require symfony/apache-pack
+    
 Changement de branche:
 
     commande à tapper: 
