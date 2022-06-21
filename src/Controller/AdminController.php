@@ -23,31 +23,14 @@ use Symfony\Component\HttpFoundation\RequestStack;
 
 class AdminController extends AbstractController
 {
-<<<<<<< HEAD
     #[Route('/admin', name: 'app_admin')]
     public function index(CategoryRepository $categoryRepository, ArticleRepository $articleRepository, Request $request, PaginatorInterface $paginatorInterface ): Response
-=======
-    private $requestStack;
-
-    public function __construct(RequestStack $requestStack)
-    {
-        $this->requestStack = $requestStack;
-    }
-    
-    #[Route('/admin', name: 'app_admin')]
-    public function index(ArticleRepository $articleRepository, Request $request, PaginatorInterface $paginatorInterface ): Response
->>>>>>> 11ac60b2be5e39083b0c5890abb86bd2c4c4d8c2
     {   
         $success = $request->query->get('success');
 
         $articles = $paginatorInterface->paginate(
             $articleRepository->findAll(),
-<<<<<<< HEAD
             $request->query->getInt('page', 1),1
-=======
-            $request->query->getInt('page', 1),
-            7
->>>>>>> 11ac60b2be5e39083b0c5890abb86bd2c4c4d8c2
         );
 
         return $this->render('admin/index.html.twig', [
@@ -61,13 +44,8 @@ class AdminController extends AbstractController
     {   
         $categories = $paginatorInterface->paginate(
             $categoryRepository->findAll(),
-<<<<<<< HEAD
             $request->query->getInt('page', 1),1
             
-=======
-            $request->query->getInt('page', 1),
-            8
->>>>>>> 11ac60b2be5e39083b0c5890abb86bd2c4c4d8c2
         );
 
         $form = $this->createForm(CategoryFormType::class, $category);
