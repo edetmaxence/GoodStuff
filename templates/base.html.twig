@@ -85,8 +85,8 @@
 								<a class="nav-link" href="{{ path('app_register') }}">Ouvrir un compte</a>
 							</li>
 						{% endif %}
-						<form class="d-flex" role="search">
-							<input class="form-control me-2" type="Rechercher" placeholder="Rechercher" aria-label="Rechercher">
+						<form class="d-flex" role="search" action="{{ path('handleSearch') }}">
+							<input class="form-control me-2" name="query" type="Rechercher" placeholder="Rechercher" aria-label="Rechercher">
 						</form>
 					</ul>
 				</div>

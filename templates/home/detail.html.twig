@@ -12,11 +12,11 @@
 		<h3> {{ article.description }}</h3>
 		<div>
 			{% if vich_uploader_asset(article,'coverFile') %}
-				<img src="{{ vich_uploader_asset(article,'coverFile')|imagine_filter('vignette') }}" alt="image d'une annonce">
+				<img src="{{ vich_uploader_asset(article,'coverFile')|imagine_filter('thumbnail') }}" alt="image d'une annonce">
 			{% endif %}
 		</div>
 
-		Auteur : {{ article.owner.firstname }}
+		Vendeur : {{ article.owner.firstname }}
 
 	</div>
 {% endblock %}

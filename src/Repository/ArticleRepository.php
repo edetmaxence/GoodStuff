@@ -4,6 +4,8 @@ namespace App\Repository;
 
 use App\Entity\Article;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query\Expr\andX;
+use Doctrine\ORM\Query\Expr\orX;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -37,6 +39,24 @@ class ArticleRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    // Fonction pour un bar de recherche pour le SearchController
+    public function findArticlesByName(string $query)
+    {
+        $qb = $this->createQueryBuilder('p');
+        $qb->where(
+            $qb->expr()->andX(
+                $qb->expr()->orX(
+                    $qb->expr()->like('p.title', ':query'),
+                    $qb->expr()->like('p.description', ':query'),          
+                ),
+                $qb->expr()->isNotNull('p.created_at')
+            ),
+            )
+        ->setParameter('query', '%' . $query . '%');
+        
+        return $qb->getQuery()->getResult();
     }
 
 //    /**
