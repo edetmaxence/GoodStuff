@@ -33,39 +33,51 @@
     </div>
 </section>
 <section class="secondSec" id="secondSec">
-    <div id="users">
-        <table class="tableUsers">
-            <thead>
-                <tr>
-                    <th class="td">Nom</th>
-                    <th>Email</th>
-                    <th>Role</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for user in users %}
+{% if app.request.method == 'GET' %}
+    {% if users | length == 0 %}
+        <h4>Aucun résultat pour votre recherche.</h4>
+    {% else %}
+        <div id="users">
+            <form class="d-flex" role="search" action="{{ path('app_admin') }}">
+                <input class="form-control me-2" name="query" type="Rechercher" placeholder="Rechercher" aria-label="Rechercher">
+            </form>
+            {% if app.request.query.get('query') %}
+                <a href="{{ path('app_admin_users') }}">Retour</a>
+            {% endif %}
+            <table class="tableUsers">
+                <thead>
                     <tr>
-                        <td class="td">{{user.firstname}}</td>
-                        <td>{{user.email}}</td>
-                        <td id="roles_{{ user.id }}" >
-                            {% if user.roles[0] == "ROLE_ADMIN" %}
-                                {{ "ADMIN" }}
-                            {% else %}
-                                {{ "USER" }}
-                            {% endif %}
-                        </td>
-                        <td class="adminChange">
-                            <a data-id="{{ user.id }}" data-role="ROLE_ADMIN" class="btn btn-outline-danger btn-sm role">Admin</a>
-                            <a data-id="{{ user.id }}" data-role="ROLE_USER" class="btn btn-outline-success btn-sm role">Users</a>
-                        </td>
+                        <th class="td">Nom</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Action</th>
                     </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        <div class="paginatUser">
-            <p>{{ knp_pagination_render(users) }}</p>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                        <tr>
+                            <td class="td">{{user.firstname}}</td>
+                            <td>{{user.email}}</td>
+                            <td id="roles_{{ user.id }}" >
+                                {% if user.roles[0] == "ROLE_ADMIN" %}
+                                    {{ "ADMIN" }}
+                                {% else %}
+                                    {{ "USER" }}
+                                {% endif %}
+                            </td>
+                            <td class="adminChange">
+                                <a data-id="{{ user.id }}" data-role="ROLE_ADMIN" class="btn btn-outline-danger btn-sm role">Admin</a>
+                                <a data-id="{{ user.id }}" data-role="ROLE_USER" class="btn btn-outline-success btn-sm role">Users</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div class="paginatUser">
+                <p>{{ knp_pagination_render(users) }}</p>
+            </div>
         </div>
-    </div>
+    {% endif %}
+{% endif %}
 </section>
 {% endblock %}

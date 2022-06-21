@@ -28,41 +28,47 @@
     </div>
 </section>
 <section class="secondSec" id="secondSec">
-    {% if success %}
-        <p>L'article a bien été supprimé</p>
+    {% if app.request.method == 'GET' %}
+        {% if articles | length == 0 %}
+            <h4>Aucun résultat pour votre recherche.</h4>
+        {% else %}
+            <div id="article">
+                <form class="d-flex" role="search" action="{{ path('app_admin_users') }}">
+                    <input class="form-control me-2" name="query" type="Rechercher" placeholder="Rechercher" aria-label="Rechercher">
+                </form>
+                <table class="tableArticle">
+                    <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th>Titre</th>
+                            <th>Description</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for article in articles %}
+                            <tr>
+                                <td class='imageArticle'><img src="images/articles/{{ article.cover }}" alt="" width="70px"></td>
+                                <td>{{ article.title }}</td>
+                                <td>{{ article.description|u.truncate(30) }}</td>
+                                <td>
+                                    <div class="action">
+                                        <a href="{{ path('app_admin_article_edit', { id: article.id }) }}" class="btnEdit">Editer</a>
+                                        <form action="{{ path('app_admin_article_delete', { id: article.id }) }}" method="post">
+                                            <input type="hidden" name="token" value="{{ csrf_token('delete-article-'~ article.id) }}">
+                                            <button class="btn btn-sm btn-outline-danger">Supprimer</button>
+                                        </form> 
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <div class="paginat">
+                    <p>{{ knp_pagination_render(articles) }}</p>
+                </div>
+            </div>
+        {% endif %}
     {% endif %}
-    <div id="article">
-        <table class="tableArticle">
-            <thead>
-                <tr>
-                    <th>Image</th>
-                    <th>Titre</th>
-                    <th>Description</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for article in articles %}
-                    <tr>
-                        <td class='imageArticle'><img src="images/articles/{{ article.cover }}" alt="" width="70px"></td>
-                        <td>{{ article.title }}</td>
-                        <td>{{ article.description|u.truncate(30) }}</td>
-                        <td>
-                            <div class="action">
-                                <a href="{{ path('app_admin_article_edit', { id: article.id }) }}" class="btnEdit">Editer</a>
-                                <form action="{{ path('app_admin_article_delete', { id: article.id }) }}" method="post">
-                                    <input type="hidden" name="token" value="{{ csrf_token('delete-article-'~ article.id) }}">
-                                    <button class="btn btn-sm btn-outline-danger">Supprimer</button>
-                                </form> 
-                            </div>
-                        </td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        <div class="paginat">
-            <p>{{ knp_pagination_render(articles) }}</p>
-        </div>
-    </div>
 </section>
 {% endblock %}
