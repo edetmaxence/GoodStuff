@@ -33,7 +33,7 @@ class ArticleFormType extends AbstractType
             ])
             
             ->add('created_at', DateType::class, [
-                'label' => 'Date du magazine',
+                'label' => 'Date de l\'annonce',
                 'widget' => 'single_text',
                 'input'  => 'datetime_immutable',
                 'required' => False
@@ -55,12 +55,8 @@ class ArticleFormType extends AbstractType
                 'label' => 'Nom de la category',
                 'required' => False
             ])
-            ->add('owner', EntityType::class, [
-                'class' => User::class,
-                'choice_label' => 'firstname',
-                'label' => 'Nom du user',
-                'required' => False
-            ])
+            
+            
             ->add('save', SubmitType::class, [
                 'label' => 'Enregistrer ',
                 'attr' => ['class' => 'btn btn-sm btn-primary editButton']

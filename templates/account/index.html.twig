@@ -23,6 +23,11 @@
 			<a href="{{ path('edituser', { id: app.user.id }) }}" class=" btn btn-outline-warning">
 				Completer vos données
 			</a>
+
+			<a class="btn btn-outline-warning" type="button" href="{{ path('newArticle') }}">Deposer annonce</a>
+			{% if is_granted('ROLE_ADMIN') %}
+			<a class="btn btn-outline-warning" type="button" href="{{ path('app_admin') }}">Tableau de bord</a>
+			{% endif %}
 		</div>
 
 
