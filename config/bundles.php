@@ -16,9 +16,5 @@ return [
     Symfony\Bundle\DebugBundle\DebugBundle::class => ['dev' => true],
     Liip\ImagineBundle\LiipImagineBundle::class => ['all' => true],
     Knp\Bundle\PaginatorBundle\KnpPaginatorBundle::class => ['all' => true],
-<<<<<<< HEAD
-    SymfonyCasts\Bundle\ResetPassword\SymfonyCastsResetPasswordBundle::class => ['all' => true],
-=======
     Vich\UploaderBundle\VichUploaderBundle::class => ['all' => true],
->>>>>>> 99626987e6b99e81a0b4d179e41974767fdbb680
 ];
