@@ -43,14 +43,12 @@
 								</svg>
 							</a>
 						</li>
-						{# {% if is_granted('ROLE_USER') %} #}
+						{% if is_granted('ROLE_USER') %}
 						<li class="nav-item">
-							<a class="nav-link" type="button" href="{{ path('newArticle') }}">Deposér annonce</a>
+							<a class="nav-link" type="button" href="{{ path('newArticle') }}">Deposer annonce</a>
 						</li>
-						{# {% endif %} #}
-						<li class="nav-item">
-							<a class="nav-link" href="{{ path('app_category') }}">Catégories</a>
-						</li>
+						{% endif %}
+						
 
 						{# <li class="nav-item dropdown">
 							{% for category in categories %}
