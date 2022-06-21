@@ -23,31 +23,14 @@ use Symfony\Component\HttpFoundation\RequestStack;
 
 class AdminController extends AbstractController
 {
-<<<<<<< HEAD
     #[Route('/admin', name: 'app_admin')]
     public function index(CategoryRepository $categoryRepository, ArticleRepository $articleRepository, Request $request, PaginatorInterface $paginatorInterface ): Response
-=======
-    private $requestStack;
-
-    public function __construct(RequestStack $requestStack)
-    {
-        $this->requestStack = $requestStack;
-    }
-    
-    #[Route('/admin', name: 'app_admin')]
-    public function index(ArticleRepository $articleRepository, Request $request, PaginatorInterface $paginatorInterface ): Response
->>>>>>> 4347447a9fa18299278990306228c6d03f144747
     {   
         $success = $request->query->get('success');
 
         $articles = $paginatorInterface->paginate(
             $articleRepository->findAll(),
-<<<<<<< HEAD
             $request->query->getInt('page', 1),1
-=======
-            $request->query->getInt('page', 1),
-            7
->>>>>>> 4347447a9fa18299278990306228c6d03f144747
         );
 
         return $this->render('admin/index.html.twig', [
@@ -61,13 +44,8 @@ class AdminController extends AbstractController
     {   
         $categories = $paginatorInterface->paginate(
             $categoryRepository->findAll(),
-<<<<<<< HEAD
             $request->query->getInt('page', 1),1
             
-=======
-            $request->query->getInt('page', 1),
-            8
->>>>>>> 4347447a9fa18299278990306228c6d03f144747
         );
 
         return $this->render('admin/categories.html.twig', [
