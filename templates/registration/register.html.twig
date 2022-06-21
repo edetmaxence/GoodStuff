@@ -3,9 +3,15 @@
 {% block title %}Ouvrir un compte{% endblock %}
 {% block stylesheets %}
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/test.css') }}" rel="stylesheet">
 {% endblock %}
 {% block body %}
-    {{ form(registrationForm) }}
+<div class="image_back">
+{{ form(registrationForm) }}
+</div>
+
+
     
+
     
 {% endblock %}
