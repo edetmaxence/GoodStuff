@@ -39,6 +39,23 @@ class ArticleRepository extends ServiceEntityRepository
         }
     }
 
+    // Fonction pour un bar de recherche pour le SearchController
+    public function findArticlesByName(string $query)
+    {
+        $qb = $this->createQueryBuilder('p');
+        $qb->where(
+            $qb->expr()->andX(
+                $qb->expr()->orX(
+                    $qb->expr()->like('p.title', ':query'),
+                    $qb->expr()->like('p.description', ':query'),          
+                )
+            ),
+            )
+        ->setParameter('query', '%' . $query . '%');
+        
+        return $qb->getQuery()->getResult();
+    }
+
 //    /**
 //     * @return Article[] Returns an array of Article objects
 //     */

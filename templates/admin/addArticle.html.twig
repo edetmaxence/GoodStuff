@@ -1,22 +1,20 @@
+
 {% extends 'base2.html.twig' %}
 
 {% block title %}GoodStuff{% endblock %}
-
-{% block javascripts %}
-
-{{ parent() }}
-<script src="{{ asset('js/changeRole.js') }}" defer></script>
-
-{% endblock %}
 
 {% block body %}
 <section class="firstSec" id="menuLeft">
     <div class="menu">
         <a href="{{ path('app_admin') }}" class="itemMenu" id="annonce">
-            <div class="test">
+            <div class="editMenu">
                 <svg class="svgMenu" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M12 16 16 12 12 8 10.6 9.4 12.2 11H8V13H12.2L10.6 14.6ZM12 22Q9.925 22 8.1 21.212Q6.275 20.425 4.925 19.075Q3.575 17.725 2.788 15.9Q2 14.075 2 12Q2 9.925 2.788 8.1Q3.575 6.275 4.925 4.925Q6.275 3.575 8.1 2.787Q9.925 2 12 2Q14.075 2 15.9 2.787Q17.725 3.575 19.075 4.925Q20.425 6.275 21.212 8.1Q22 9.925 22 12Q22 14.075 21.212 15.9Q20.425 17.725 19.075 19.075Q17.725 20.425 15.9 21.212Q14.075 22 12 22ZM12 20Q15.325 20 17.663 17.663Q20 15.325 20 12Q20 8.675 17.663 6.337Q15.325 4 12 4Q8.675 4 6.338 6.337Q4 8.675 4 12Q4 15.325 6.338 17.663Q8.675 20 12 20ZM12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Z"/></svg>
                 <p>Annonces</p>
             </div>
+        </a>
+        <a href="" class="editHover now" id="edit">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M14 21 12.6 19.575 16.175 16H5V4H7V14H16.175L12.575 10.4L14 8.975L20 15Z"/></svg>   
+            <p>Ajouter</p>
         </a>
         <a href="{{  path('app_admin_category') }}" class="itemMenu" id="categorie">
             <div class="test">
@@ -24,7 +22,7 @@
                 <p>Catégories</p>
             </div>
         </a>
-        <a href="{{  path('app_admin_users') }}" class="itemMenu now" id="user">
+        <a href="{{  path('app_admin_users') }}" class="itemMenu" id="user">
             <div class="test">
                 <svg class="svgMenu" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M12 16 16 12 12 8 10.6 9.4 12.2 11H8V13H12.2L10.6 14.6ZM12 22Q9.925 22 8.1 21.212Q6.275 20.425 4.925 19.075Q3.575 17.725 2.788 15.9Q2 14.075 2 12Q2 9.925 2.788 8.1Q3.575 6.275 4.925 4.925Q6.275 3.575 8.1 2.787Q9.925 2 12 2Q14.075 2 15.9 2.787Q17.725 3.575 19.075 4.925Q20.425 6.275 21.212 8.1Q22 9.925 22 12Q22 14.075 21.212 15.9Q20.425 17.725 19.075 19.075Q17.725 20.425 15.9 21.212Q14.075 22 12 22ZM12 20Q15.325 20 17.663 17.663Q20 15.325 20 12Q20 8.675 17.663 6.337Q15.325 4 12 4Q8.675 4 6.338 6.337Q4 8.675 4 12Q4 15.325 6.338 17.663Q8.675 20 12 20ZM12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Z"/></svg>
                 <p>Utilisateurs</p>
@@ -32,52 +30,25 @@
         </a>
     </div>
 </section>
-<section class="secondSec" id="secondSec">
-{% if app.request.method == 'GET' %}
-    {% if users | length == 0 %}
-        <h4>Aucun résultat pour votre recherche.</h4>
-    {% else %}
-        <div id="users">
-            <form class="d-flex" role="search" action="{{ path('app_admin') }}" class="searchBar">
-                <input class="form-control me-2 search" name="query" type="Rechercher" placeholder="Rechercher" aria-label="Rechercher">
-            </form>
-            {% if app.request.query.get('query') %}
-                <a href="{{ path('app_admin_users') }}" class="return">Retour</a>
-            {% endif %}
-            <table class="tableUsers">
-                <thead>
-                    <tr>
-                        <th class="td">Nom</th>
-                        <th>Email</th>
-                        <th>Role</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for user in users %}
-                        <tr>
-                            <td class="td">{{user.firstname}}</td>
-                            <td>{{user.email}}</td>
-                            <td id="roles_{{ user.id }}" >
-                                {% if user.roles[0] == "ROLE_ADMIN" %}
-                                    {{ "ADMIN" }}
-                                {% else %}
-                                    {{ "USER" }}
-                                {% endif %}
-                            </td>
-                            <td class="adminChange">
-                                <a data-id="{{ user.id }}" data-role="ROLE_ADMIN" class="btn btn-outline-danger btn-sm role">Admin</a>
-                                <a data-id="{{ user.id }}" data-role="ROLE_USER" class="btn btn-outline-success btn-sm role">Users</a>
-                            </td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-            <div class="paginatUser">
-                <p>{{ knp_pagination_render(users) }}</p>
-            </div>
+<section class="secondSec">
+    <div class="edit">
+        <div class="formLeft">
+            {{ form_start(form) }}
+                {{ form_errors(form) }}
+                {{ form_row(form.title) }}
+                {{ form_row(form.description) }}
+                {{ form_row(form.created_at) }}
+                {{ form_row(form.prix) }}
+                {{ form_row(form.category) }}
+                {{ form_row(form.owner) }}
         </div>
-    {% endif %}
-{% endif %}
+        <div class="formRight">
+                <div class="formItem">
+                    {{ form_row(form.coverFile) }}
+                </div>
+                {{ form_widget(form.save) }}
+            {{ form_end(form) }}
+        </div>
+    </div>
 </section>
 {% endblock %}

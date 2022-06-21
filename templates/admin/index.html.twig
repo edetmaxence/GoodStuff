@@ -33,9 +33,16 @@
             <h4>Aucun résultat pour votre recherche.</h4>
         {% else %}
             <div id="article">
-                <form class="d-flex" role="search" action="{{ path('app_admin_users') }}">
-                    <input class="form-control me-2" name="query" type="Rechercher" placeholder="Rechercher" aria-label="Rechercher">
+                <form class="d-flex searchBar" role="search" action="{{ path('app_admin') }}">
+                    <input class="form-control me-2 search" name="query" type="Rechercher" placeholder="Rechercher" aria-label="Rechercher">
                 </form>
+                {% if app.request.query.get('query') %}
+                    <a href="{{ path('app_admin') }}" class="return">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M12 20 4 12 12 4 13.425 5.4 7.825 11H20V13H7.825L13.425 18.6Z"/></svg>
+                        Retour
+                    </a>
+                {% endif %}
+                <a href="{{ path('app_admin_article_add') }}">test</a>
                 <table class="tableArticle">
                     <thead>
                         <tr>
@@ -50,7 +57,7 @@
                             <tr>
                                 <td class='imageArticle'><img src="images/articles/{{ article.cover }}" alt="" width="70px"></td>
                                 <td>{{ article.title }}</td>
-                                <td>{{ article.description|u.truncate(30) }}</td>
+                                <td>{{ article.description|u.truncate(50) }}</td>
                                 <td>
                                     <div class="action">
                                         <a href="{{ path('app_admin_article_edit', { id: article.id }) }}" class="btnEdit">Editer</a>

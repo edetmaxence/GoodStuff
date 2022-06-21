@@ -83,12 +83,28 @@ main {
     display: flex;
     flex-direction: column;
 }
+.return {
+    background-color: #0d6efd;
+    padding: 4px 18px;
+    color: whitesmoke;
+    text-decoration: none;
+    border-radius: 7px;
+}
+.return svg {
+    fill: whitesmoke;
+    margin-right: 8px;
+}
+.searchBar{
+    width: 40%;
+    margin: auto;
+    margin-top: 30px;
+}
     /* Table article */
 
 .tableArticle {
     width: 83%;
     margin: auto;
-    margin-top: 140px;
+    margin-top: 70px;
 }
 .tableArticle td {
     border-bottom: #b2bec3 1px solid;
