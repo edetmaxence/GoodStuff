@@ -1,17 +1,24 @@
 
 
+<<<<<<< HEAD
+=======
+body {
+    background-color: white;
+    
+}
+>>>>>>> 13297aa329da998e7a6228cf71d811a77ac2c139
 
 .container {
     
     max-width: 380px;
     margin: auto;
-    background-color: rgba(0,0,0,0.8);
+    background-color: rgba(0,0,0,0.4);
     text-align: center;
     border-radius: 20px;
     padding: 40px;
     color: #fff;
     box-sizing: border-box;
-    margin-top: 150px;
+    margin-top: 100px;
 }
 h2 {
     color: #fff;
