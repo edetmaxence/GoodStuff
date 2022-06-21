@@ -67,7 +67,7 @@ class AdminController extends AbstractController
         $users = $paginatorInterface->paginate(
             $userRepository->findAll(),
             $request->query->getInt('page', 1),
-            10
+            8
         );
 
         return $this->render('admin/users.html.twig', [
@@ -161,6 +161,26 @@ class AdminController extends AbstractController
 
         return $this->render('admin/addArticle.html.twig', [
             
+        ]);
+    }
+    #[Route('/admin/article/add', name: 'app_admin_article_add')]
+    public function add(Request $request, ArticleRepository $articleRepository): Response
+    {
+        $article = new Article;
+        $form = $this->createForm(ArticleFormType::class, $article);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $articleRepository->add($article, true);
+
+            $this->addFlash('success', 'Votre article à bien été enregistré !');
+
+            return $this->redirectToRoute('app_home');
+        }
+
+        return $this->render('admin/addArticle.html.twig', [
+            'form' => $form->createView()
         ]);
     }
 }

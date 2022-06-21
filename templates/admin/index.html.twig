@@ -31,7 +31,6 @@
     {% if success %}
         <p>L'article a bien été supprimé</p>
     {% endif %}
-    <a href="{{ path('app_admin_article_add') }}" class="addArticle">Ajouter un Article</a>
     <div id="article">
         <table class="tableArticle">
             <thead>
@@ -45,7 +44,7 @@
             <tbody>
                 {% for article in articles %}
                     <tr>
-                        <td><img src="images/articles/{{ article.cover }}" alt="" width="50px"></td>
+                        <td class='imageArticle'><img src="images/articles/{{ article.cover }}" alt="" width="70px"></td>
                         <td>{{ article.title }}</td>
                         <td>{{ article.description|u.truncate(90) }}</td>
                         <td class="action">

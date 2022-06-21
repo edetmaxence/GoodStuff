@@ -14,7 +14,7 @@ buttons.forEach(btn => {
         })
             .then(response => response.json())
             .then(data => {
-                alert(data.role);
+                //alert(data.role);
                 document.querySelector(`#roles_${id}`).innerText = data.role;
             })
             .catch(error => alert(error))

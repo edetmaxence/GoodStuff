@@ -38,11 +38,13 @@
     </div>
 </section>
 <section class="secondSec">
-    <div class="edit">
+    <div class="editCate">
         {{ form_start(form) }}
             {{ form_errors(form) }}
             {{ form_row(form.name) }}
-            {{ form_row(form.article) }}
+            <div class="try">
+                {{ form_widget(form.article) }}
+            </div>
         {{ form_end(form) }}
     </div>
 </section>

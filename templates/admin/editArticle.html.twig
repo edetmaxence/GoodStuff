@@ -39,14 +39,14 @@
                 {{ form_row(form.description) }}
                 {{ form_row(form.created_at) }}
                 {{ form_row(form.prix) }}
+                {{ form_row(form.category) }}
+                {{ form_row(form.owner) }}
         </div>
         <div class="formRight">
                 <div class="formItem">
                     {{ form_row(form.coverFile) }}
                 </div>
-                {{ form_row(form.category) }}
-                {{ form_row(form.owner) }}
-                {{ form_row(form.save) }}
+                {{ form_widget(form.save) }}
             {{ form_end(form) }}
         </div>
     </div>
