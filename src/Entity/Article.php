@@ -35,7 +35,7 @@ class Article
     #[ORM\Column(type: 'integer')]
     private $prix;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $cover;
 
     #[Vich\UploadableField(mapping: 'articles', fileNameProperty: 'cover' )]

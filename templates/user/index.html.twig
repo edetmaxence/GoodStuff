@@ -1,10 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello UserController!{% endblock %}
+{% block title %}Hello UserController!
+   
+{% endblock %}
 
 {% block body %}
-
-    <div class="container w-50 py-5">
+    
+    <div class="container">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 
         {% for message in app.flashes('success') %}
             <div class="alert alert-success">
