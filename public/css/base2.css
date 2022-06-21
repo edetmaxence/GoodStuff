@@ -12,7 +12,7 @@ body {
     overflow: hidden;
 }
 header {
-    background-color: rgb(38, 103, 245);
+    background-color: rgb(48, 48, 48);
     padding: 3px 10px 3px 10px;
 }
 h1 {
@@ -132,6 +132,9 @@ main {
 .editMenu {
     display: flex;
     margin-bottom: 5px;
+}
+.addArticle {
+    background-color: rgb(43, 107, 245);
 }
     /* Table categorie */
 

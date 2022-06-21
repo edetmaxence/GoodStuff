@@ -48,7 +48,7 @@ class AdminController extends AbstractController
     }
 
     #[Route('/admin/categorie', name: 'app_admin_category')]
-    public function categorie(Category $category, CategoryRepository $categoryRepository, Request $request, PaginatorInterface $paginatorInterface ): Response
+    public function categorie(CategoryRepository $categoryRepository, Request $request, PaginatorInterface $paginatorInterface ): Response
     {   
         $categories = $paginatorInterface->paginate(
             $categoryRepository->findAll(),
@@ -56,20 +56,8 @@ class AdminController extends AbstractController
             8
         );
 
-        $form = $this->createForm(CategoryFormType::class, $category);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $categoryRepository->add($category, true);
-            $this->addFlash('success', 'La catégorie à bien été modifier');
-
-            // Redirection vers une autre page
-            return $this->redirectToRoute('app_admin_category');
-        }
-
         return $this->render('admin/categories.html.twig', [
-            'categories' => $categories,
-            'form' => $form->createView() 
+            'categories' => $categories
         ]);
     }
 
@@ -157,27 +145,6 @@ class AdminController extends AbstractController
         ]);
     }
 
-    #[Route('/admin/users/edit/{id}', name:'app_admin_user_edit', requirements: ['id' => '\d+'])]
-    public function editUsers(User $user, Request $request, UserRepository $userRepository): Response
-    {   
-        $id = $request->get('id');
-        $form = $this->createForm(UserFormType::class, $user);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $userRepository->add($user, true);
-            $this->addFlash('success', 'L\'utilisateur à bien été modifier');
-
-            // Redirection vers une autre page
-            return $this->redirectToRoute('app_admin_users');
-        }
-
-        return $this->render('admin/editUsers.html.twig', [
-            'form' => $form->createView(),
-            'id' => $id
-        ]);
-    }
-
     #[Route('/admin/users/edit/{id}/{role}', name: 'app_admin_user_role', methods: ['POST'])]
     public function roles(User $user, string $role, UserRepository $userRepository, ): JsonResponse{
        
@@ -185,5 +152,15 @@ class AdminController extends AbstractController
         $userRepository->add($user, true);
 
         return $this->json(['role' => $role]);
+    }
+
+    #[Route('/admin/article/add', name: 'app_admin_article_add')]
+    public function addArticle( ): Response{
+       
+
+
+        return $this->render('admin/addArticle.html.twig', [
+            
+        ]);
     }
 }
