@@ -9,7 +9,8 @@
 		<option selected value="0">Toutes les catégories</option>
 			{% for categorie in categories %}
 		
-				<option selected value="{{ categorie.id }}" >{{ categorie.name }}</option>
+				<option  value="{{ categorie.id }}" >{{ categorie.name }}</option>
+				
 			{% endfor %}
 		</select>
 	</form>
@@ -19,11 +20,13 @@
 		<thead>
 			<tr>
 				<th>Titre</th>
-				{# <th>Description</th> #}
+				<th>Description</th>
 				<th>Vendeur</th>
 				<th>Ville</th>
 				<th>Prix</th>
 				<th>Créer le</th>
+				<th>Catégories</th>
+				
 
 				{% if is_granted('ROLE_USER') %}
 				<th colspan="3">Action</th>
@@ -41,11 +44,13 @@
 							{{ article.title }}
 						</a>
 					</td>
-					{# <td>{{ article.description }}</td> #}
+				
+					<td>{{ article.description | u.truncate(35,'...') }}</td>
 					<td>{{ article.owner.userIdentifier }}</td>
 					<td>{{ article.owner.city }}</td>
 					<td>{{ article.prix }}</td>
 					<td>{{ article.createdAt| date('d-m-Y') }}</td>
+					<td>{{ article.category.name }}</td>
 
 					{% if is_granted('ROLE_USER') %}
 					<td>					

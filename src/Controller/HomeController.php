@@ -20,21 +20,22 @@ class HomeController extends AbstractController
     {
         $articles = $articleRepository->findAll();
         $id = $request->query->get("id");
-        $idcat = $categoryRepository->find('id');
-       
-        if ($id ) {
-            $articles = $articleRepository->findBy(['category' => $id]);
-            
-        }
-        if (! $idcat) {
-            throw $this->createNotFoundException("l' id :' $id 'n'existe pas");
-             
-         }
-      
+        
+        if($id){
+            $idcat = $categoryRepository->find($id);
+            if(!$idcat){
+                $this->addFlash('error'," L'id $id n'existe pas");
+                return $this->render('bundles/TwigBundle/Exception/error404.html.twig');
 
+               }
+               else{
+                $articles = $articleRepository->findBy(['category' => $id]);
+               }
+        }
+    
 
         $categories = $categoryRepository->findAll();
-        
+
         return $this->render('home/index.html.twig', [
             'articles' => $articles,
             'categories' => $categories,

@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+<h1> Erreur - 404 </h1>
+ {% for message in app.flashes('error') %}
+            <div class="alert alert-danger">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+<a class="btn btn-secondary" href="{{ path('app_home') }}">Retour à l'accueil</a>
+{% endblock %}
+
