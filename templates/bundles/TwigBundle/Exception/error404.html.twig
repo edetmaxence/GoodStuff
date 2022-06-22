@@ -10,6 +10,17 @@
             </div>
         {% endfor %}
 
-<a class="btn btn-secondary" href="{{ path('app_home') }}">Retour à l'accueil</a>
+                <div class="row">
+                    <div class="col 6">
+                        <div id="oopss">
+                    <div id="error-text">
+                        <img src="https://cdn.rawgit.com/ahmedhosna95/upload/1731955f/sad404.svg" alt="404">
+                        <span>Erreur 404</span>
+                    <p class="p-a">Vous êtes perdu dans votre recherche !!!</p>
+                    <p class="p-b">Mais c'est pas grave clic sur le bouton</p>
+                <a href='{{ path('app_home') }}'class="back">Retour à l'accueil</a>
+            </div> 
+        </div>
+        {# Enlevé le footer #}
 {% endblock %}
 
