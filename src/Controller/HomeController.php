@@ -6,6 +6,7 @@ use App\Entity\Article;
 use App\Form\ArticleFormType;
 use App\Repository\ArticleRepository;
 use App\Repository\CategoryRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,14 +20,22 @@ class HomeController extends AbstractController
     {
         $articles = $articleRepository->findAll();
         $id = $request->query->get("id");
-        if ($id) {
-            $articles = $articleRepository->findBy(['category' => $id]);
-            
-        }
+        
+        if($id){
+            $idcat = $categoryRepository->find($id);
+            if(!$idcat){
+                $this->addFlash('error'," L'id $id n'existe pas");
+                return $this->render('bundles/TwigBundle/Exception/error404.html.twig');
 
+               }
+               else{
+                $articles = $articleRepository->findBy(['category' => $id]);
+               }
+        }
+    
 
         $categories = $categoryRepository->findAll();
-        
+
         return $this->render('home/index.html.twig', [
             'articles' => $articles,
             'categories' => $categories,
@@ -34,7 +43,7 @@ class HomeController extends AbstractController
     }
 
     #[Route('/article/new', name: 'newArticle')]
-    // #[IsGranted('ROLE_USER')]
+    #[IsGranted('ROLE_USER')]
     public function add(Request $request, ArticleRepository $articleRepository): Response
     {
         $article = new Article;
@@ -42,14 +51,14 @@ class HomeController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
+            $article->setOwner($this->getUser());
             $articleRepository->add($article, true);
 
             $this->addFlash('success', 'Votre article à bien été enregistré !');
 
 
 
-            return $this->redirectToRoute('app_home');
+            return $this->redirectToRoute('app_account');
         }
 
         return $this->render('home/newArticle.html.twig', [

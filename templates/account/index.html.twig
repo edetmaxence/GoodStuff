@@ -10,12 +10,16 @@
 	
 {% block body %}
 
-	<div class="container w-50 py-4">
-
+	
+ {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
 		<div class="d-flex align-items-center justify-content-between">
 			<h3>Bienvenue
 				<span class="text-primary text-capitalize">
-					{{ app.user.lastname }}
+					{{ app.user.userIdentifier }}
 				</span>
 			</h3>
 			
@@ -23,7 +27,15 @@
 			<a href="{{ path('edituser', { id: app.user.id }) }}" class=" btn btn-outline-warning">
 				Completer vos données
 			</a>
+<<<<<<< HEAD
 			
+=======
+
+			<a class="btn btn-outline-warning" type="button" href="{{ path('newArticle') }}">Deposer annonce</a>
+			{% if is_granted('ROLE_ADMIN') %}
+			<a class="btn btn-outline-warning" type="button" href="{{ path('app_admin') }}">Tableau de bord</a>
+			{% endif %}
+>>>>>>> 91baa4fab14f2f98b07c042c2f72e0b0ca7da9da
 		</div>
 
 
@@ -86,7 +98,7 @@
 		</table>
 
 
-	</div>
+	
 
 
 {% endblock %}
