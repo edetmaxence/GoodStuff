@@ -1,91 +1,88 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Account Utilisateur
-	
+
 {% endblock %}
-	
+
 {% block body %}
 
-	
- {% for message in app.flashes('success') %}
-            <div class="alert alert-success">
-                {{ message }}
-            </div>
-        {% endfor %}
-		<div class="d-flex align-items-center justify-content-between">
-			<h3>Bienvenue
-				<span class="text-primary text-capitalize">
-					{{ app.user.userIdentifier }}
-				</span>
-			</h3>
 
-			{# Demander à utilisateur de completer ses donnée #}
-			<a href="{{ path('edituser', { id: app.user.id }) }}" class=" btn btn-outline-warning">
-				Completer vos données
-			</a>
-		</div>
+{% for message in app.flashes('success') %}
+	<div class="alert alert-success">
+		{{ message }}
+	</div>
+{% endfor %}
+<div class="d-flex align-items-center justify-content-between">
+	<h3>Bienvenue
+		<span class="text-primary text-capitalize">
+			{{ app.user.userIdentifier }}
+		</span>
+	</h3>
 
+	{# Demander à utilisateur de completer ses donnée #}
+	<a href="{{ path('edituser', { id: app.user.id }) }}" class=" btn btn-outline-warning">
+		Completer vos données
+	</a>
 
-		<div class="py-4">
-			<p>Téléphone :
-				{{ app.user.phonenumber }}</p>
-			<p>Email :
-				{{ app.user.email }}</p>
-			<p>Code postale :
-				{{ app.user.postcode }}
-				- Ville :
-				{{ app.user.city }}</p>
-		</div>
-
-		{# Voir annonce de l'utilisateur #}
-		<h3>Mes annonces</h3>
-		<table class="table-light">
-			<thead>
-				<th>
-					Titre
-				</th>
-				<th>
-					Prix
-				</th>
-				<th>
-					Photo
-				</th>
-				<th>
-					Actions
-				</th>
-			</thead>
-			<tbody>
-				{% for article in articles %}
-				<tr>
-					<td>{{ article.title }}</td>
-					<td>{{ article.prix }}</td>
-					<td>
-						<img src="{{ vich_uploader_asset(article,'coverFile')|imagine_filter('vignette') }}" alt="image d'une annonce">						
-					</td>
-					<td>
-						<a href="{{ path('detailArticle', {id: article.id })}}" class=" btn btn-outline-warning">
-							Details
-						</a>
-					</td>
-					<td>					
-						<td>
-							<a class="btn btn-secondary" type="button" href="{{ path('editArticle', {id: article.id }) }}">Edit</a>
-						</td>
-						<td>
-							<form action="{{ path('deleteArticle' , {id: article.id })}}" method="POST">
-								<input type="hidden" name="token" value="{{ csrf_token('deletearticle-'~ article.id )}}">
-								<button class="btn btn-danger" type="submit">Delete</button>
-							</form>
-						</td>
-					</td>
-				</tr>
-				{% endfor %}
-			</tbody>
-
-		</table>
+	<a class="btn btn-outline-warning" type="button" href="{{ path('newArticle') }}">Deposer annonce</a>
+	{% if is_granted('ROLE_ADMIN') %}
+		<a class="btn btn-outline-warning" type="button" href="{{ path('app_admin') }}">Tableau de bord</a>
+	{% endif %}
+</div>
 
 
-	
+<div class="py-4">
+	<p>Téléphone :
+		{{ app.user.phonenumber }}</p>
+	<p>Email :
+		{{ app.user.email }}</p>
+	<p>Code postale :
+		{{ app.user.postcode }}
+		- Ville :
+		{{ app.user.city }}</p>
+</div>
 
-
-{% endblock %}
+{# Voir annonce de l'utilisateur #}
+<h3>Mes annonces</h3>
+<table class="table-light">
+	<thead>
+		<th>
+			Titre
+		</th>
+		<th>
+			Prix
+		</th>
+		<th>
+			Photo
+		</th>
+		<th>
+			Actions
+		</th>
+	</thead>
+	<tbody>
+		{% for article in articles %}
+			<tr>
+				<td>{{ article.title }}</td>
+				<td>{{ article.prix }}</td>
+				<td>
+					<img src="{{ vich_uploader_asset(article,'coverFile')|imagine_filter('vignette') }}" alt="image d'une annonce">
+				</td>
+				<td>
+					<a href="{{ path('detailArticle', {id: article.id })}}" class=" btn btn-outline-warning">
+						Details
+					</a>
+				</td>
+				<td></td>
+				<td>
+					<a class="btn btn-secondary" type="button" href="{{ path('editArticle', {id: article.id }) }}">Edit</a>
+				</td>
+				<td>
+					<form action="{{ path('deleteArticle' , {id: article.id })}}" method="POST">
+						<input type="hidden" name="token" value="{{ csrf_token('deletearticle-'~ article.id )}}">
+						<button class="btn btn-danger" type="submit">Delete</button>
+					</form>
+				</td>
+			</tr>
+		</td>
+	</tbody>
+</tr>{% endfor %}</tbody></table>{% endblock %}

@@ -33,7 +33,7 @@ class ArticleFormType extends AbstractType
             ])
             
             ->add('created_at', DateType::class, [
-                'label' => 'Date du magazine',
+                'label' => 'Date de l\'annonce',
                 'widget' => 'single_text',
                 'input'  => 'datetime_immutable',
                 'required' => False
@@ -45,9 +45,10 @@ class ArticleFormType extends AbstractType
             ->add('coverFile', VichImageType::class ,
             [
                 'label' => 'Image',
-                'imagine_pattern' => 'vignette', // Applique une configuration LiipImagine sur l'image
+                'imagine_pattern' => 'details', // Applique une configuration LiipImagine sur l'image
                 'download_label' => false, // Enleve le lien de telechargement
-                'delete_label' => 'Cocher pour supprimer l\'image'
+                'delete_label' => 'Cocher pour supprimer l\'image',
+                'required'=> false
             ])
             ->add('category', EntityType::class, [
                 'class' => Category::class,
@@ -55,12 +56,8 @@ class ArticleFormType extends AbstractType
                 'label' => 'Nom de la category',
                 'required' => False
             ])
-            ->add('owner', EntityType::class, [
-                'class' => User::class,
-                'choice_label' => 'firstname',
-                'label' => 'Nom du user',
-                'required' => False
-            ])
+            
+            
             ->add('save', SubmitType::class, [
                 'label' => 'Enregistrer ',
                 'attr' => ['class' => 'btn btn-sm btn-primary editButton']
