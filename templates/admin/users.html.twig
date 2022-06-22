@@ -53,42 +53,41 @@
             <table class="tableUsers">
                 <thead>
                     <tr>
-                        <th class="td userName">Nom</th>
+                        <th class="td">Nom</th>
                         <th>Email</th>
-                        <th class="td">Role</th>
+                        <th>Role</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for user in users %}
                         <tr>
-                            <td class="td userName">
+                            <td class="td">
                                 <p>{{user.firstname}}</p>
                             </td>
                             <td>
                                 {% if user.roles[0] == "ROLE_ADMIN" %}
-                                    <p id="admin">{{user.email}}</p>
+                                    <p class="admin" id="rolesAdmin_{{ user.id }}">{{user.email}}</p>
                                 {% else %}
-                                    <p id="userColor">{{user.email}}</p>
+                                    <p class="userColor" id="rolesAdmin_{{ user.id }}">{{user.email}}</p>
                                 {% endif %}
                             </td>
-                            <td id="roles_{{ user.id }}" class="td">
+                            <td id="roles_{{ user.id }}">
                                 {% if user.roles[0] == "ROLE_ADMIN" %}
                                     {{ "ADMIN" }}
                                 {% else %}
                                     {{ "USER" }}
-                                {% endif %}
-                            </td>
+                                {% endif %}</td>
                             <td class="adminChange">
                                 <a data-id="{{ user.id }}" data-role="ROLE_ADMIN" class="btn btn-outline-danger btn-sm role">Admin</a>
-                                <a data-id="{{ user.id }}" data-role="ROLE_USER" class="btn btn-outline-success btn-sm role">Users</a>
+                                <a data-id="{{ user.id }}" data-role="ROLE_USER" class="btn btn-outline-success btn-sm role" id="rolesUser_{{ user.id }}">Users</a>
                             </td>
                         </tr>
                     {% endfor %}
                 </tbody>
             </table>
             <div class="paginatUser">
-                <p>{{ knp_pagination_render(users) }}</p>
+                {{ knp_pagination_render(users) }}
             </div>
         </div>
     {% endif %}

@@ -336,12 +336,15 @@ main {
 .admin{
     color: red;
 }
-.user{
+.userColor{
     color: green;
 }
 
 
-@media screen and (max-width: 575px)
+
+
+
+@media screen and (min-width: 376px) and (max-width: 575px)
 {
     .menuBurger{
         display: block;
@@ -412,6 +415,9 @@ main {
     .tableCate {
         width: 100%;
     }
+    .userName{
+        display: none;
+    }
 }
 
 @media screen and (min-width: 576px) and (max-width: 1025px){
@@ -457,6 +463,12 @@ main {
 }
 
 @media screen and (max-width: 375px){
+    body{
+        overflow: scroll;
+    }
+    header {
+        width: 100%;
+    }
     .desc{
         display: none;
     }
@@ -464,6 +476,31 @@ main {
         margin-left: 2.5px;
     }
     .paginat{
-        margin-left: 8%;
+        margin-left: 20%;
+    }
+    .action{
+        flex-direction: column;
+        gap: 10px;
+    }
+    .menuBurger{
+        display: block;
+    }
+    .h1 {
+        font-size: 1.2rem;
+    }
+    .article{
+        width: 100%;
+    }
+    .firstSec{
+        width: 45%;
+    }
+    .searchBar {
+        width: 80%;
+    }
+    .secondSec{
+        width: 100%;
+    }
+    .cate {
+        margin-top: 70px;
     }
 }

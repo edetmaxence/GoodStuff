@@ -7,16 +7,15 @@ const menuLeft = document.getElementById('menuLeft')
 const secondSec = document.getElementById('secondSec')
 const td = document.querySelectorAll('.td')
 const admin = document.getElementById('admin')
-const userColor = document.getElementById('userColor')
-const userName = document.querySelectorAll('.userName')
+const pagination = document.querySelector('.pagination')
 
 
 if (screen.width < 576) {
     menuLeft.classList.add('d-none')
+    pagination.classList.add('pagination-sm');
     td.forEach(element => {
         element.classList.add('d-none')
-        userColor.classList.add('user')
-        admin.classList.add('admin')
+        // admin.classList.add('admin')
     });
     
 }else {
@@ -26,11 +25,9 @@ if (screen.width < 576) {
 
 if (screen.width < 1025 ) {
     menuLeft.classList.add('d-block')
-    userName.forEach(element => {
-        element.classList.add('d-none')
-    });
     
 }else {
+    pagination.classList.remove('pagination-sm');
     menuLeft.classList.add('d-block')
     menuLeft.classList.remove('d-none')
 }
