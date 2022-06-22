@@ -1,7 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello UserController!
-   
+
+{% block stylesheets %}
+	{{ parent() }}
+    <link href="{{ asset('css/button.css') }}" rel="stylesheet">
+	<link href="{{ asset('css/table.css') }}" rel="stylesheet">
 {% endblock %}
 
 {% block body %}
