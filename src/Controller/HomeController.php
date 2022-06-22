@@ -47,16 +47,17 @@ class HomeController extends AbstractController
     public function add(Request $request, ArticleRepository $articleRepository): Response
     {
         $article = new Article;
-        $form = $this->createForm(ArticleFormType::class, $article);
+        $form = $this->createForm(ArticleFormType::class, $article,[
+            'validation_groups' => ['new'],
+        ]);
         $form->handleRequest($request);
+
 
         if ($form->isSubmitted() && $form->isValid()) {
             $article->setOwner($this->getUser());
             $articleRepository->add($article, true);
 
             $this->addFlash('success', 'Votre article à bien été enregistré !');
-
-
 
             return $this->redirectToRoute('app_account');
         }
@@ -68,15 +69,18 @@ class HomeController extends AbstractController
     #[Route('/article/edit/{id}', name: 'editArticle', requirements: ['id' => '\d+'])]
     public function update(article $article, Request $request, articleRepository $articleRepository): Response
     {
+
         $form = $this->createForm(articleFormType::class, $article);
         $form->handleRequest($request);
-
+       
+       
         if ($form->isSubmitted() && $form->isValid()) {
+          
             $articleRepository->add($article, true);
 
             $this->addFlash('success', 'Le article :' . $article->gettitle() . 'mis a jour !');
-
-            return $this->redirectToRoute('app_home');
+            
+            return $this->redirectToRoute('app_account');
         }
 
         return $this->render('home/newarticle.html.twig', [

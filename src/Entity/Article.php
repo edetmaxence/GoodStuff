@@ -39,7 +39,7 @@ class Article
     private $cover;
 
     #[Vich\UploadableField(mapping: 'articles', fileNameProperty: 'cover' )]
-    #[Assert\Image(mimeTypesMessage: 'Ceci n\'est pas une image')]
+    #[Assert\Image(mimeTypesMessage: 'Ceci n\'est pas une image',groups :[ 'new'])]
     #[Assert\File(maxSize: '1M',
      maxSizeMessage: 'Cette image ne doit pas dépasser les {{ limit }} {{ suffix }}',
 
@@ -49,6 +49,9 @@ class Article
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'articles')]
     private $owner;
+
+    #[ORM\Column(type: 'datetime_immutable', nullable: true)]
+    private $updated_at;
 
    
 
@@ -126,7 +129,7 @@ class Article
         return $this->cover;
     }
 
-    public function setCover(string $cover): self
+    public function setCover(?string $cover): self
     {
         $this->cover = $cover;
 
@@ -159,6 +162,18 @@ class Article
     public function setOwner(?user $owner): self
     {
         $this->owner = $owner;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeImmutable
+    {
+        return $this->updated_at;
+    }
+
+    public function setUpdatedAt(\DateTimeImmutable $updated_at): self
+    {
+        $this->updated_at = $updated_at;
 
         return $this;
     }

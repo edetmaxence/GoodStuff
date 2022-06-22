@@ -1,12 +1,16 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Account Utilisateur
+<<<<<<< HEAD
 {% endblock %}
 
 {% block stylesheets %}
 	{{ parent() }}
 	<link href="{{ asset('css/button.css') }}" rel="stylesheet">
 	<link href="{{ asset('css/table.css') }}" rel="stylesheet">
+=======
+
+>>>>>>> dev
 {% endblock %}
 
 {% block body %}
@@ -30,6 +34,11 @@
 	</a>
 </div>
 
+	<a class="btn btn-outline-warning" type="button" href="{{ path('newArticle') }}">Deposer annonce</a>
+	{% if is_granted('ROLE_ADMIN') %}
+		<a class="btn btn-outline-warning" type="button" href="{{ path('app_admin') }}">Tableau de bord</a>
+	{% endif %}
+</div>
 
 <div class="py-4">
 	<p>Téléphone :

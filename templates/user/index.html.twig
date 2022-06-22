@@ -9,8 +9,8 @@
 
 {% block body %}
     
-    <div class="container">
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+   
+  
 
         {% for message in app.flashes('success') %}
             <div class="alert alert-success">
@@ -23,6 +23,6 @@
       
         {{ form(form) }}
 
-    </div>
+    
 
 {% endblock %}

@@ -1,17 +1,16 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Ouvrir un compte{% endblock %}
+
 {% block stylesheets %}
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-  <link href="{{ asset('css/register.css') }}" rel="stylesheet">  
+  {{ parent() }}
+  <link href="{{ asset('css/register.css') }}" rel="stylesheet">   
 {% endblock %}
 {% block body %}
     <div class="image">
 
     {{ form(registrationForm) }}
   
-   
-    
     </div>
 
   
