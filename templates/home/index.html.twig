@@ -4,78 +4,61 @@
 {% block title %}Annonce{% endblock %}
 
 
+
 {% block body %}
-{% if app.request.method == 'GET' %}
+	{% if app.request.method == 'GET' %}
 
 
-	{% if articles | length == 0 %}
-		<h4>Aucun résultat pour votre recherche.</h4>
-	{% else %}
+		{% if articles | length == 0 %}
+			<h4>Aucun résultat pour votre recherche.</h4>
+		{% else %}
 
 
-		<form method="GET">
-			<select onchange="this.form.submit();" id="id" name="id" class="form-select" aria-label="Default select example">
-				<option selected value="0">Toutes les catégories</option>
-				{% for categorie in categories %}
+			<form method="GET">
+				<select onchange="this.form.submit();" id="id" name="id" class="form-select" aria-label="Default select example">
+					<option selected value="0">Toutes les catégories</option>
+					{% for categorie in categories %}
 
-					<option value="{{ categorie.id }}">{{ categorie.name }}</option>
+						<option value="{{ categorie.id }}">{{ categorie.name }}</option>
 
-				{% endfor %}
-			</select>
-		</form>
+					{% endfor %}
+				</select>
 
-
-		<table class='table'>
-			<thead>
-				<tr>
-					<th>Titre</th>
-					<th>Description</th>
-					<th>Vendeur</th>
-					<th>Ville</th>
-					<th>Prix</th>
-					<th>Créer le</th>
-					<th>Catégories</th>
-
-
-					{% if is_granted('ROLE_USER') %}
-						<th colspan="3">Action</th>
-					{% endif %}
-				</tr>
-			</thead>
-
-			<tbody>
-
+			</form>
+			<div class="grid">
 				{% for article in articles %}
 
-					<tr>
-						<td>
-							<a class="text-decoration-none" href="{{ path('detailArticle', {id: article.id })}}">
-								{{ article.title }}
-							</a>
-						</td>
 
-						<td>{{ article.description | u.truncate(35,'...') }}</td>
-						<td>{{ article.owner.userIdentifier }}</td>
-						<td>{{ article.owner.city }}</td>
-						<td>{{ article.prix }}</td>
-						<td>{{ article.createdAt| date('d-m-Y') }}</td>
-						<td>{{ article.category.name }}</td>
+					<div class="grid-item">
+					 <a class="text-decoration-none" href="{{ path('detailArticle', {id: article.id })}}">
+						<div class="card">
 
-						{% if is_granted('ROLE_USER') %}
-							<td></td>
-							<td>
-								<a class="btn btn-secondary" type="button" href="{{ path('editArticle', {id: article.id }) }}">Edit</a>
-							</td>
-							<td>
-								<form action="{{ path('deleteArticle' , {id: article.id })}}" method="POST">
-									<input type="hidden" name="token" value="{{ csrf_token('deletearticle-'~ article.id )}}">
-									<button class="btn btn-danger" type="submit">Delete</button>
-								</form>
-							</td>
-						</td>
-					{% endif %}
-				</tr>
-			{% endfor %}
-		</tbody>
-	</table>
-{% endif %}{% endif %}{% endblock %}
+
+							{% if vich_uploader_asset(article,'coverFile') %}
+								<img src="{{ vich_uploader_asset(article,'coverFile')|imagine_filter('vignette') }}" alt="image d'une annonce">
+							{% endif %}
+							<div class="card-content">
+								<h1 class="card-header">{{ article.title }}</h1>
+								<p>{{ article.description | u.truncate(35,'...') }}</p>
+								Vender : {{ article.owner.userIdentifier }}
+								Localisation : {{ article.owner.city }}
+								Prix: {{ article.prix }}
+								Ajouter le : {{ article.createdAt| date('d-m-Y') }}
+								Catégorie : {{ article.category.name }}
+							</div>
+						</div>
+						</a>
+					</div>
+
+				{% endfor %}
+			</div>
+
+			
+							
+							
+										
+
+
+		{% endif %}
+	{% endif %}
+{% endblock %}
