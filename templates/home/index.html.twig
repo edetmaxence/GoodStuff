@@ -5,14 +5,28 @@
 
 
 
+{% block stylesheets %}
+	{{ parent() }}
+	<link href="{{ asset('css/table.css') }}" rel="stylesheet">
+	<link href="{{ asset('css/button.css') }}" rel="stylesheet">
+{% endblock %}
+
 {% block body %}
+
+	<div class="pb-4 text-capitalize">
+		{% if is_granted('ROLE_USER') %}
+			Bienvenue	{{ app.user.userIdentifier }} !
+		{% endif %}
+	</div>
+	
+							
 	{% if app.request.method == 'GET' %}
 
+		
 
 		{% if articles | length == 0 %}
 			<h4>Aucun résultat pour votre recherche.</h4>
 		{% else %}
-
 
 			<form method="GET">
 				<select onchange="this.form.submit();" id="id" name="id" class="form-select" aria-label="Default select example">
