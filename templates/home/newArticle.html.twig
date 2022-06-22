@@ -2,14 +2,16 @@
 
 {% block title %}Ajout d'un nouvel article{% endblock %}
 {% block stylesheets %}
+{{ parent() }}
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+     <link href="{{ asset('css/newarticle.css') }}" rel="stylesheet">
 {% endblock %}
 {% block body %}
     
     
-  <link href="{{ asset('css/newarticle.css') }}" rel="stylesheet">
+ 
     <div class="new">
-       {{ form(form) }}
+     {{ form(form) }}
     </div>
-    
+      
 {% endblock %}

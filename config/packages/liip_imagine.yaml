@@ -2,6 +2,15 @@ liip_imagine:
     # valid drivers options include "gd" or "gmagick" or "imagick"
     driver: "gd"
 
+        # configure resolvers
+    resolvers :
+
+        # setup the default resolver
+        default :
+
+            # use the default web path
+            web_path : ~
+
     filter_sets:
         cache: ~
 
@@ -19,12 +28,18 @@ liip_imagine:
         vignette:
             quality: 85
             filters:
-                thumbnail: { size: [300, 200], mode: outbound }
-                background: { size: [425, 375], position: center, color: '#000000' }
+                thumbnail: { size: [200, 100], mode: outbound }
+                
 
 
         details:
             quality: 85
             filters:
+<<<<<<< HEAD
+                thumbnail: { size: [425, 375], mode: 'outbound' }
+                background: { size: [600, 450], position: center, color: '#000000' }
+              
+=======
                 thumbnail: { size: [600, 350], mode: 'outbound' }
                 background: { size: [425, 375], position: center, color: '#000000' }
+>>>>>>> eb82a7975de754b0173813f6ac25d6998c86b61f
