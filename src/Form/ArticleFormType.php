@@ -45,7 +45,7 @@ class ArticleFormType extends AbstractType
             ->add('coverFile', VichImageType::class ,
             [
                 'label' => 'Image',
-                'imagine_pattern' => 'vignette', // Applique une configuration LiipImagine sur l'image
+                'imagine_pattern' => 'thumbnail', // Applique une configuration LiipImagine sur l'image
                 'download_label' => false, // Enleve le lien de telechargement
                 'delete_label' => 'Cocher pour supprimer l\'image'
             ])

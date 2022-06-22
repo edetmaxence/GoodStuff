@@ -56,8 +56,6 @@ class HomeController extends AbstractController
 
             $this->addFlash('success', 'Votre article à bien été enregistré !');
 
-
-
             return $this->redirectToRoute('app_account');
         }
 
@@ -76,7 +74,7 @@ class HomeController extends AbstractController
 
             $this->addFlash('success', 'Le article :' . $article->gettitle() . 'mis a jour !');
 
-            return $this->redirectToRoute('app_home');
+            return $this->redirectToRoute('app_account');
         }
 
         return $this->render('home/newarticle.html.twig', [
