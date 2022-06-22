@@ -9,6 +9,7 @@ p {
     margin-bottom: 0;
 }
 body {
+    font-family: 'Roboto', sans-serif;
     overflow: hidden;
 }
 header {

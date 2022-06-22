@@ -3,8 +3,13 @@
 {% block title %}Annonce
 {% endblock %}
 
+{% block stylesheets %}
+	{{ parent() }}
+    <link href="{{ asset('css/table.css') }}" rel="stylesheet">
+{% endblock %}
+
 {% block body %}
-	<form method="GET">
+	<form method="GET" class="py-4">
 		<select onchange="this.form.submit();" id="id" name="id" class="form-select" aria-label="Default select example">
 		<option selected value="0">Toutes les catégories</option>
 			{% for categorie in categories %}
@@ -17,7 +22,7 @@
 
 	<table class='table'>
 		<thead>
-			<tr>
+			<tr class="text-center">
 				<th>Titre</th>
 				{# <th>Description</th> #}
 				<th>Vendeur</th>
@@ -37,15 +42,15 @@
 
 				<tr>
 					<td>
-						<a class="text-decoration-none" href="{{ path('detailArticle', {id: article.id })}}">
+						<a class="text-decoration-none color" href="{{ path('detailArticle', {id: article.id })}}">
 							{{ article.title }}
 						</a>
 					</td>
 					{# <td>{{ article.description }}</td> #}
-					<td>{{ article.owner.firstname }}</td>
-					<td>{{ article.owner.city }}</td>
-					<td>{{ article.prix }}</td>
-					<td>{{ article.createdAt| date('d-m-Y') }}</td>
+					<td class="text-center">{{ article.owner.firstname }}</td>
+					<td class="text-center">{{ article.owner.city }}</td>
+					<td class="text-end">{{ article.prix }} €</td>
+					<td class="text-center">{{ article.createdAt| date('d-m-Y') }}</td>
 
 					{% if is_granted('ROLE_USER') %}
 					<td>					
@@ -64,6 +69,5 @@
 			{% endfor %}
 		</tbody>
 	</table>
-
 
 {% endblock %}

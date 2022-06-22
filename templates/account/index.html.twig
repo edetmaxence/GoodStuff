@@ -1,7 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Account Utilisateur
-	
+{% block title %}Account Utilisateur	
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+    <link href="{{ asset('css/table.css') }}" rel="stylesheet">
 {% endblock %}
 	
 {% block body %}
@@ -14,11 +18,12 @@
 					{{ app.user.lastname }}
 				</span>
 			</h3>
-
+			
 			{# Demander à utilisateur de completer ses donnée #}
 			<a href="{{ path('edituser', { id: app.user.id }) }}" class=" btn btn-outline-warning">
 				Completer vos données
 			</a>
+			
 		</div>
 
 
