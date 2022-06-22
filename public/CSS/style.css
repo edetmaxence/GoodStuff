@@ -1,11 +1,6 @@
 
 
 body {
-<<<<<<< HEAD
-    background-color: white;
-    min-height: 100vh;
-    position: relative;
-=======
     background-color: #eee;
     font-family: sans-serif;
     min-height: 100%;
@@ -27,7 +22,6 @@ body {
     box-shadow: 0 3rem 6rem rgba(0, 0, 0, 0.1);
     cursor: pointer;
     transition: 0.2s;
->>>>>>> dev
 }
 
 .grid-item:hover {
