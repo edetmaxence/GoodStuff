@@ -1,7 +1,8 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Annonce
-{% endblock %}
+
+{% block title %}Annonce{% endblock %}
+
 
 
 {% block body %}
@@ -27,35 +28,35 @@
 			<div class="grid">
 				{% for article in articles %}
 
-					{{ dump(article)}}
+
 					<div class="grid-item">
+					 <a class="text-decoration-none" href="{{ path('detailArticle', {id: article.id })}}">
 						<div class="card">
 
-							
-	{% if vich_uploader_asset(article,'coverFile') %}
-				<img src="{{ vich_uploader_asset(article,'coverFile')|imagine_filter('thumbnail') }}" alt="image d'une annonce">
-			{% endif %}
+
+							{% if vich_uploader_asset(article,'coverFile') %}
+								<img src="{{ vich_uploader_asset(article,'coverFile')|imagine_filter('vignette') }}" alt="image d'une annonce">
+							{% endif %}
 							<div class="card-content">
 								<h1 class="card-header">{{ article.title }}</h1>
 								<p>{{ article.description | u.truncate(35,'...') }}</p>
+								Vender : {{ article.owner.userIdentifier }}
+								Localisation : {{ article.owner.city }}
+								Prix: {{ article.prix }}
+								Ajouter le : {{ article.createdAt| date('d-m-Y') }}
+								Catégorie : {{ article.category.name }}
 							</div>
 						</div>
+						</a>
 					</div>
 
 				{% endfor %}
 			</div>
 
-			{# <a class="text-decoration-none" href="{{ path('detailArticle', {id: article.id })}}">
-									{{ article.title }}
-								</a>
-				
-				
-								<td></td>
-								<td>{{ article.owner.userIdentifier }}</td>
-								<td>{{ article.owner.city }}</td>
-								<td>{{ article.prix }}</td>
-								<td>{{ article.createdAt| date('d-m-Y') }}</td>
-								<td>{{ article.category.name }}</td> #}
+			
+							
+							
+										
 
 
 		{% endif %}
