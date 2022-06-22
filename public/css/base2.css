@@ -22,10 +22,11 @@ header {
     display: flex;
     justify-content: space-between;
 }
-h1 {
+.h1 {
     font-size: 1.7rem;
     padding: 3px;
     color: whitesmoke;
+    text-decoration: none;
 }
 .firstSec {
     background-color: #2d3436;
@@ -84,20 +85,44 @@ main {
     flex-direction: column;
 }
 .return {
-    background-color: #0d6efd;
+    background-color: #0984e3;
     padding: 4px 18px;
     color: whitesmoke;
     text-decoration: none;
     border-radius: 7px;
+    margin-right: 50px;
 }
 .return svg {
     fill: whitesmoke;
     margin-right: 8px;
 }
+.returnDiv {
+    display: flex;
+    justify-content: end;
+    margin-top: 30px;
+}
 .searchBar{
     width: 40%;
     margin: auto;
     margin-top: 30px;
+    display: flex;
+    align-items: baseline;
+}
+.recherche {
+    border: 1px solid #e17055;
+    border-radius: 7px;
+    margin-left: -5px;
+    padding: 6px 10px;
+    background-color: #636e72;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    color: whitesmoke;
+}
+.search {
+    border: 1px solid #e17055;
+    margin-right: 0 !important;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
 }
     /* Table article */
 
@@ -131,24 +156,34 @@ main {
     margin-top: 40px;
     margin-left: 38%;
 }
+.paginat li a:active {
+    background-color: #0984e3 !important;
+}
+.paginat li a:hover {
+    background-color: #0984e3 !important;
+}
+.paginat li a:focus {
+    background-color: #0984e3 !important;
+}
 .paginatUser {
     margin-top: 40px;
     margin-left: 38%;
 }
 .action {
     display: flex;
+    justify-content: center;
     gap: 40px;
 }
 .btnEdit {
     text-decoration: none;
-    border: 1px solid #00a000;
+    border: 1px solid #0984e3;
     padding: 2px 15px 0px;
     border-radius: 5px;
-    color: #00a000;
+    color: #0984e3;
     font-size: 15px;
 }
 .btnEdit:hover {
-    background-color: #00a000;
+    background-color: #0984e3;
     color: white;
 }
 .editHover {
@@ -209,7 +244,7 @@ main {
     gap: 10px;
 }
 .editButton{
-    background-color: #0d6efd;
+    background-color: #0984e3;
     margin: auto !important;
     color: whitesmoke;
     width: 70%;
@@ -217,21 +252,21 @@ main {
 }
 .editButton:hover{
     background-color: white;
-    color: #0d6efd;
+    color: #0984e3;
 }
 .formItem{
     margin-top: 5px;
 }
 .btnEditCate {
     text-decoration: none;
-    border: 1px solid #00a000;
+    border: 1px solid #0984e3;
     border-radius: 5px;
-    color: #00a000;
+    color: #0984e3;
     font-size: 15px;
     padding: 4px 15px;
 }
 .btnEditCate:hover {
-    background-color: #00a000;
+    background-color: #0984e3;
     color: white;
 }
 .editCate{
@@ -243,7 +278,7 @@ main {
     border-radius: 7px;
 }
 .save {
-    background-color: #0d6efd;
+    background-color: #0984e3;
     color: whitesmoke;
     width: 50%;
     margin-top: 20px;
@@ -261,7 +296,7 @@ main {
 .tableUsers {
     width: 70%;
     margin: auto;
-    margin-top: 140px;
+    margin-top: 70px;
 }
 .tableUsers td{
     border-bottom: rgb(102, 102, 102) 1px solid;
@@ -281,14 +316,14 @@ main {
 }
 .btnEditProfil {
     text-decoration: none;
-    border: 1px solid #00a000;
+    border: 1px solid #0984e3;
     border-radius: 5px;
-    color: #00a000;
+    color: #0984e3;
     font-size: 15px;
     padding: 3px 15px;
 }
 .btnEditProfil:hover {
-    background-color: #00a000;
+    background-color: #0984e3;
     color: white;
 }
 .adminChange {
@@ -298,9 +333,15 @@ main {
 #svg{
     fill: whitesmoke;
 }
+.admin{
+    color: red;
+}
+.user{
+    color: green;
+}
 
 
-@media screen and (max-width: 424px)
+@media screen and (max-width: 575px)
 {
     .menuBurger{
         display: block;
@@ -330,6 +371,7 @@ main {
     }
     .tableUsers{
         margin-top: 70px;
+        width: 90%;
     }
     .cate{
         margin-top: 70px;
@@ -344,7 +386,7 @@ main {
         display: flex;
         flex-direction: column;
         gap: 20px;
-        padding: 8px 0 !important;
+        padding: 8px 5px !important;
     }
     .paginatUser{
         margin-left: 10%;
@@ -352,5 +394,76 @@ main {
     .editCate{
         width: 80%;
         margin-top: 30%;
+    }
+    .searchBar {
+        width: 70%;
+    }
+    .edit{
+        margin-top: 60px;
+        margin-bottom: 30px;
+        width: 88%;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+    }
+    .formLeft, .formRight {
+        width: 100%;
+    }
+    .tableCate {
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: 576px) and (max-width: 1025px){
+    body{
+        overflow: scroll;
+    }
+    .firstSec{
+        width: 25%;
+        position: sticky;
+        top: 0;
+    }
+    .action{
+        flex-direction: column;
+        gap: 10px;
+    }
+    .tableCate{
+        width: 90%;
+    }
+    .searchBar{
+        width: 50%;
+    }
+    .paginatUser{
+        margin-left: 20%;
+    }
+    .paginat{
+        margin-left: 20%;
+    }
+    .edit{
+        margin-top: 60px;
+        margin-bottom: 30px;
+        width: 88%;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+    }
+    .formLeft, .formRight {
+        width: 100%;
+    }
+    .editCate{
+        width: 80%;
+        margin-top: 30%;
+    }
+}
+
+@media screen and (max-width: 375px){
+    .desc{
+        display: none;
+    }
+    .paginatUser{
+        margin-left: 2.5px;
+    }
+    .paginat{
+        margin-left: 8%;
     }
 }

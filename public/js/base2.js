@@ -6,11 +6,27 @@ const menu = document.getElementById('svg')
 const menuLeft = document.getElementById('menuLeft')
 const secondSec = document.getElementById('secondSec')
 const td = document.querySelectorAll('.td')
+const admin = document.getElementById('admin')
+const userColor = document.getElementById('userColor')
+const userName = document.querySelectorAll('.userName')
 
 
-if (screen.width < 425) {
+if (screen.width < 576) {
     menuLeft.classList.add('d-none')
     td.forEach(element => {
+        element.classList.add('d-none')
+        userColor.classList.add('user')
+        admin.classList.add('admin')
+    });
+    
+}else {
+    menuLeft.classList.add('d-block')
+    menuLeft.classList.remove('d-none')
+}
+
+if (screen.width < 1025 ) {
+    menuLeft.classList.add('d-block')
+    userName.forEach(element => {
         element.classList.add('d-none')
     });
     

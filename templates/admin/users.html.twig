@@ -38,27 +38,41 @@
         <h4>Aucun résultat pour votre recherche.</h4>
     {% else %}
         <div id="users">
-            <form class="d-flex" role="search" action="{{ path('app_admin') }}" class="searchBar">
-                <input class="form-control me-2 search" name="query" type="Rechercher" placeholder="Rechercher" aria-label="Rechercher">
-            </form>
             {% if app.request.query.get('query') %}
-                <a href="{{ path('app_admin_users') }}" class="return">Retour</a>
+                <div class="returnDiv">
+                    <a href="{{ path('app_admin') }}" class="return">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M12 20 4 12 12 4 13.425 5.4 7.825 11H20V13H7.825L13.425 18.6Z"/></svg>
+                        Retour
+                    </a>
+                </div>
             {% endif %}
+            <form class="d-flex searchBar" role="search" action="{{ path('app_admin_users') }}">
+                <input class="form-control me-2 search" id="recherche" name="query" type="Rechercher" placeholder="Rechercher" aria-label="Rechercher">
+                <button class="recherche">Recherche</button>
+            </form>
             <table class="tableUsers">
                 <thead>
                     <tr>
-                        <th class="td">Nom</th>
+                        <th class="td userName">Nom</th>
                         <th>Email</th>
-                        <th>Role</th>
+                        <th class="td">Role</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for user in users %}
                         <tr>
-                            <td class="td">{{user.firstname}}</td>
-                            <td>{{user.email}}</td>
-                            <td id="roles_{{ user.id }}" >
+                            <td class="td userName">
+                                <p>{{user.firstname}}</p>
+                            </td>
+                            <td>
+                                {% if user.roles[0] == "ROLE_ADMIN" %}
+                                    <p id="admin">{{user.email}}</p>
+                                {% else %}
+                                    <p id="userColor">{{user.email}}</p>
+                                {% endif %}
+                            </td>
+                            <td id="roles_{{ user.id }}" class="td">
                                 {% if user.roles[0] == "ROLE_ADMIN" %}
                                     {{ "ADMIN" }}
                                 {% else %}
