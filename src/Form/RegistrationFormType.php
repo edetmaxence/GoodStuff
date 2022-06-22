@@ -52,7 +52,7 @@ class RegistrationFormType extends AbstractType
             ->add('plainPassword', RepeatedType::class, [
                 'label' => false,
                 'type' => PasswordType::class,
-                'invalid_message' => 'Les mots de passes ne correspondent pas',
+                'invalid_message' => 'Les mots de passe ne correspondent pas',
                 'first_options' => ['label' => 'Mot de passe'],
                 'second_options' => ['label' => 'Confirmation du mot de passe'],
                 'mapped' => false,
