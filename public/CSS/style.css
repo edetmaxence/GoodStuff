@@ -1,20 +1,8 @@
 
-* {
-    margin: 0;
-    padding: 0;
-}
-
-html {
-    box-sizing: border-box;
-    font-size: 62.5%;
-}
 
 body {
     background-color: #eee;
     font-family: sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     min-height: 100%;
     position: relative;
 }
@@ -70,7 +58,7 @@ body {
 
 
 
-.container {
+/* .container {
     
     max-width: 380px;
     margin: auto;
@@ -81,7 +69,7 @@ body {
     color: #fff;
     box-sizing: border-box;
     margin-top: 100px;
-}
+} */
 h2 {
     color: #fff;
     text-align: center;

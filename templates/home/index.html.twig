@@ -8,9 +8,9 @@
 	{% if app.request.method == 'GET' %}
 
 
-		{# {% if articles | length == 0 %}
+		{% if articles | length == 0 %}
 			<h4>Aucun résultat pour votre recherche.</h4>
-		{% else %} #}
+		{% else %}
 
 
 			<form method="GET">
@@ -24,40 +24,40 @@
 				</select>
 
 			</form>
-<div class="grid">
+			<div class="grid">
+				{% for article in articles %}
 
-			{% for article in articles %}
-
-
-				
+					{{ dump(article)}}
 					<div class="grid-item">
 						<div class="card">
-							<img class="card-img" src="{{ asset('article.cover') }}" alt="{{ asset('article.cover') }}">
+
+							
+	{% if vich_uploader_asset(article,'coverFile') %}
+				<img src="{{ vich_uploader_asset(article,'coverFile')|imagine_filter('thumbnail') }}" alt="image d'une annonce">
+			{% endif %}
 							<div class="card-content">
 								<h1 class="card-header">{{ article.title }}</h1>
-								<p>Description</p>
+								<p>{{ article.description | u.truncate(35,'...') }}</p>
 							</div>
 						</div>
-					</div>	
-					
+					</div>
+
 				{% endfor %}
-				</div>
+			</div>
 
-				{# <a class="text-decoration-none" href="{{ path('detailArticle', {id: article.id })}}">
-					{{ article.title }}
-				</a>
+			{# <a class="text-decoration-none" href="{{ path('detailArticle', {id: article.id })}}">
+									{{ article.title }}
+								</a>
+				
+				
+								<td></td>
+								<td>{{ article.owner.userIdentifier }}</td>
+								<td>{{ article.owner.city }}</td>
+								<td>{{ article.prix }}</td>
+								<td>{{ article.createdAt| date('d-m-Y') }}</td>
+								<td>{{ article.category.name }}</td> #}
 
 
-				<td>{{ article.description | u.truncate(35,'...') }}</td>
-				<td>{{ article.owner.userIdentifier }}</td>
-				<td>{{ article.owner.city }}</td>
-				<td>{{ article.prix }}</td>
-				<td>{{ article.createdAt| date('d-m-Y') }}</td>
-				<td>{{ article.category.name }}</td> #}
-
-
-		
-
-		{# {% endif %} #}
+		{% endif %}
 	{% endif %}
 {% endblock %}
