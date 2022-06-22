@@ -102,3 +102,31 @@ button:hover {
     background-color: #a96bff;
 }
 
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding-top: 2rem;
+    background: #3c6382;
+    z-index: 10;
+}
+
+footer ul {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    gap: 25px;
+    padding: 0;
+}
+
+footer ul .text {
+    font-size: 20px;
+    color: white;
+}
+
+footer ul li {
+    list-style-type: none;
+    text-decoration: none;
+    gap: 20px;
+    color: white;
+}
