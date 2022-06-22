@@ -55,7 +55,7 @@
                     <tr>
                         <th class="td">Nom</th>
                         <th>Email</th>
-                        <th>Role</th>
+                        <th class="td">Role</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -72,7 +72,7 @@
                                     <p class="userColor" id="rolesAdmin_{{ user.id }}">{{user.email}}</p>
                                 {% endif %}
                             </td>
-                            <td id="roles_{{ user.id }}">
+                            <td id="roles_{{ user.id }}" class="td">
                                 {% if user.roles[0] == "ROLE_ADMIN" %}
                                     {{ "ADMIN" }}
                                 {% else %}

@@ -15,16 +15,16 @@
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
             <!-- JavaScript Bundle with Popper -->
-            <script src="{{asset('js/base2.js')}}" defer></script>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+            <script src="{{asset('js/base2.js')}}" defer></script>
         {% endblock %}
     </head>
     <body>
         <header>
             <div class="header">
                 <a href="{{ path('app_admin') }}" class="h1">GoodStuff Administration</a>
-                <div id="svg" class="menuBurger">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="40" width="40"><path d="M5 30V27.208H35V30ZM5 21.375V18.625H35V21.375ZM5 12.792V10H35V12.792Z"/></svg>
+                <div class="menuBurger">
+                    <svg id="svg" xmlns="http://www.w3.org/2000/svg" height="40" width="40"><path d="M5 30V27.208H35V30ZM5 21.375V18.625H35V21.375ZM5 12.792V10H35V12.792Z"/></svg>
                 </div>
             </div>
         </header>

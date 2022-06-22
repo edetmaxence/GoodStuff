@@ -17,17 +17,12 @@ buttons.forEach(btn => {
                 //alert(data.role);
                 if (data.role === "ROLE_ADMIN") {
                     document.querySelector(`#roles_${id}`).innerText = "ADMIN";
-                    if (screen.width < 576) {
-                        document.querySelector(`#rolesAdmin_${id}`).classList.add('admin');
-                        document.querySelector(`#rolesAdmin_${id}`).classList.remove('userColor');
-                    }
+                    document.querySelector(`#rolesAdmin_${id}`).classList.add('admin');
+                    document.querySelector(`#rolesAdmin_${id}`).classList.remove('userColor');
                 }else if (data.role === "ROLE_USER"){
                     document.querySelector(`#roles_${id}`).innerText = "USER";
-                    if (screen.width < 576) {
-                        document.querySelector(`#rolesAdmin_${id}`).classList.add('userColor');
-                        document.querySelector(`#rolesAdmin_${id}`).classList.remove('admin');
-                    }
-                    
+                    document.querySelector(`#rolesAdmin_${id}`).classList.add('userColor');
+                    document.querySelector(`#rolesAdmin_${id}`).classList.remove('admin');
                 }
             })
             .catch(error => alert(error))

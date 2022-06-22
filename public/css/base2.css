@@ -8,6 +8,7 @@
 .menuBurger{
     display: none;
 }
+
 p {
     margin-bottom: 0;
 }
@@ -502,5 +503,28 @@ main {
     }
     .cate {
         margin-top: 70px;
+    }
+    .edit{
+        width: 90%;
+        flex-direction: column;
+        gap: 0;
+    }
+    .formLeft, .formRight {
+        width: 100%;
+    }
+    .tableCate {
+        width: 100%;
+    }
+    .editCate{
+        width: 85%;
+    }
+    .tableUsers td {
+        padding: 13px 10px;
+    }
+    .adminChange{
+        margin-bottom: -1px;
+    }
+    .paginatUser{
+        margin-left: 12%;
     }
 }

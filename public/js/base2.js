@@ -12,7 +12,11 @@ const pagination = document.querySelector('.pagination')
 
 if (screen.width < 576) {
     menuLeft.classList.add('d-none')
-    pagination.classList.add('pagination-sm');
+   
+    if(pagination) {
+        pagination.classList.add('pagination-sm');
+    }
+
     td.forEach(element => {
         element.classList.add('d-none')
         // admin.classList.add('admin')
