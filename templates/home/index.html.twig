@@ -4,71 +4,77 @@
 {% endblock %}
 
 {% block body %}
-	<form method="GET">
-		<select onchange="this.form.submit();" id="id" name="id" class="form-select" aria-label="Default select example">
-		<option selected value="0">Toutes les catégories</option>
-			{% for categorie in categories %}
-		
-				<option  value="{{ categorie.id }}" >{{ categorie.name }}</option>
-				
-			{% endfor %}
-		</select>
-	</form>
-	
+{% if app.request.method == 'GET' %}
 
-	<table class='table'>
-		<thead>
-			<tr>
-				<th>Titre</th>
-				<th>Description</th>
-				<th>Vendeur</th>
-				<th>Ville</th>
-				<th>Prix</th>
-				<th>Créer le</th>
-				<th>Catégories</th>
-				
 
-				{% if is_granted('ROLE_USER') %}
-				<th colspan="3">Action</th>
-				{% endif %}
-			</tr>
-		</thead>
+	{% if articles | length == 0 %}
+		<h4>Aucun résultat pour votre recherche.</h4>
+	{% else %}
 
-		<tbody>
 
-			{% for article in articles %}
+		<form method="GET">
+			<select onchange="this.form.submit();" id="id" name="id" class="form-select" aria-label="Default select example">
+				<option selected value="0">Toutes les catégories</option>
+				{% for categorie in categories %}
 
+					<option value="{{ categorie.id }}">{{ categorie.name }}</option>
+
+				{% endfor %}
+			</select>
+		</form>
+
+
+		<table class='table'>
+			<thead>
 				<tr>
-					<td>
-						<a class="text-decoration-none" href="{{ path('detailArticle', {id: article.id })}}">
-							{{ article.title }}
-						</a>
-					</td>
-				
-					<td>{{ article.description | u.truncate(35,'...') }}</td>
-					<td>{{ article.owner.userIdentifier }}</td>
-					<td>{{ article.owner.city }}</td>
-					<td>{{ article.prix }}</td>
-					<td>{{ article.createdAt| date('d-m-Y') }}</td>
-					<td>{{ article.category.name }}</td>
+					<th>Titre</th>
+					<th>Description</th>
+					<th>Vendeur</th>
+					<th>Ville</th>
+					<th>Prix</th>
+					<th>Créer le</th>
+					<th>Catégories</th>
+
 
 					{% if is_granted('ROLE_USER') %}
-					<td>					
+						<th colspan="3">Action</th>
+					{% endif %}
+				</tr>
+			</thead>
+
+			<tbody>
+
+				{% for article in articles %}
+
+					<tr>
 						<td>
-							<a class="btn btn-secondary" type="button" href="{{ path('editArticle', {id: article.id }) }}">Edit</a>
+							<a class="text-decoration-none" href="{{ path('detailArticle', {id: article.id })}}">
+								{{ article.title }}
+							</a>
 						</td>
-						<td>
-							<form action="{{ path('deleteArticle' , {id: article.id })}}" method="POST">
-								<input type="hidden" name="token" value="{{ csrf_token('deletearticle-'~ article.id )}}">
-								<button class="btn btn-danger" type="submit">Delete</button>
-							</form>
+
+						<td>{{ article.description | u.truncate(35,'...') }}</td>
+						<td>{{ article.owner.userIdentifier }}</td>
+						<td>{{ article.owner.city }}</td>
+						<td>{{ article.prix }}</td>
+						<td>{{ article.createdAt| date('d-m-Y') }}</td>
+						<td>{{ article.category.name }}</td>
+
+						{% if is_granted('ROLE_USER') %}
+							<td></td>
+							<td>
+								<a class="btn btn-secondary" type="button" href="{{ path('editArticle', {id: article.id }) }}">Edit</a>
+							</td>
+							<td>
+								<form action="{{ path('deleteArticle' , {id: article.id })}}" method="POST">
+									<input type="hidden" name="token" value="{{ csrf_token('deletearticle-'~ article.id )}}">
+									<button class="btn btn-danger" type="submit">Delete</button>
+								</form>
+							</td>
 						</td>
-					</td>
 					{% endif %}
 				</tr>
 			{% endfor %}
 		</tbody>
 	</table>
-
-
-{% endblock %}
+{% endif %}{% endif %}{% endblock %}

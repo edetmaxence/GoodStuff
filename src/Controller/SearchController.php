@@ -20,7 +20,7 @@ class SearchController extends AbstractController
         }
         // dd($articles);
 
-        return $this->render('search/index.html.twig', [
+        return $this->render('home/index.html.twig', [
             'articles' => $articles,
             'categories' => $categories
         ]);
