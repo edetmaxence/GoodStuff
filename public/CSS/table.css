@@ -8,6 +8,7 @@
     --pigment: #EA2027;
     --mediterania: #d1ccc0;
     --hot-stone: #aaa69d;
+    --h: #60a3bc
 }
 body {
     font-family: 'Roboto', sans-serif;
@@ -15,15 +16,24 @@ body {
 
 table {
     border-radius: 10px;
-    background-color: var(--light-blue); 
+    /* background-color: var(--h);  */
     margin-top: 3em;   
 }
+table thead{
+    
+    background-color: var(--h); 
+      
+}
+
 
 table tr {
     color: var(--dark-blue);
     text-decoration: none;
     text-transform: capitalize;
+  
+    
 }
+
 
 .color {
     color: #130f40;

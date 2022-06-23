@@ -12,6 +12,9 @@ body {
 .link {
     color: aliceblue !important;
 }
+.logo {
+    color: #f0932b !important;
+}
 
 .link:hover {
     color: black;
