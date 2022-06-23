@@ -9,6 +9,7 @@ const td = document.querySelectorAll('.td')
 const admin = document.getElementById('admin')
 const pagination = document.querySelector('.pagination')
 
+    /* Gere selon la taille ecranc */ 
 
 if (screen.width < 576) {
     menuLeft.classList.add('d-none')
@@ -19,7 +20,6 @@ if (screen.width < 576) {
 
     td.forEach(element => {
         element.classList.add('d-none')
-        // admin.classList.add('admin')
     });
     
 }else {
@@ -35,6 +35,10 @@ if (screen.width < 1025 ) {
     menuLeft.classList.add('d-block')
     menuLeft.classList.remove('d-none')
 }
+
+
+/* menu burger (version mobile) */
+
 menu.addEventListener('click', function(){
     if (menuLeft.classList.contains('d-none')) {
         menuLeft.classList.remove('d-none')
@@ -49,6 +53,8 @@ menu.addEventListener('click', function(){
         secondSec.classList.remove('d-none')
     }
 })
+
+    /* change le "HOVER" */ 
 
 annonce.addEventListener('click', function() {
     categorie.classList.remove('now')
