@@ -14,8 +14,16 @@ buttons.forEach(btn => {
         })
             .then(response => response.json())
             .then(data => {
-                alert(data.role);
-                document.querySelector(`#roles_${id}`).innerText = data.role;
+                //alert(data.role);
+                if (data.role === "ROLE_ADMIN") {
+                    document.querySelector(`#roles_${id}`).innerText = "ADMIN";
+                    document.querySelector(`#rolesAdmin_${id}`).classList.add('admin');
+                    document.querySelector(`#rolesAdmin_${id}`).classList.remove('userColor');
+                }else if (data.role === "ROLE_USER"){
+                    document.querySelector(`#roles_${id}`).innerText = "USER";
+                    document.querySelector(`#rolesAdmin_${id}`).classList.add('userColor');
+                    document.querySelector(`#rolesAdmin_${id}`).classList.remove('admin');
+                }
             })
             .catch(error => alert(error))
     })

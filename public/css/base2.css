@@ -5,6 +5,10 @@
     padding: 0;
     font-size: 16px;
 }
+.menuBurger{
+    display: none;
+}
+
 p {
     margin-bottom: 0;
 }
@@ -12,16 +16,21 @@ body {
     overflow: hidden;
 }
 header {
-    background-color: rgb(48, 48, 48);
+    background-color: #2d3436;
     padding: 3px 10px 3px 10px;
 }
-h1 {
+.header{
+    display: flex;
+    justify-content: space-between;
+}
+.h1 {
     font-size: 1.7rem;
     padding: 3px;
     color: whitesmoke;
+    text-decoration: none;
 }
 .firstSec {
-    background-color: rgb(48, 48, 48);
+    background-color: #2d3436;
     height: 100vh;
     width: 12%;
 }
@@ -68,54 +77,114 @@ h1 {
 .test p {
     padding-bottom: 15px;
 }
-    /* Table article */
-
 main {
     display: flex;
 }
 .secondSec {
     width: 88%;
+    display: flex;
+    flex-direction: column;
 }
+.return {
+    background-color: #0984e3;
+    padding: 4px 18px;
+    color: whitesmoke;
+    text-decoration: none;
+    border-radius: 7px;
+    margin-right: 50px;
+}
+.return svg {
+    fill: whitesmoke;
+    margin-right: 8px;
+}
+.returnDiv {
+    display: flex;
+    justify-content: end;
+    margin-top: 30px;
+}
+.searchBar{
+    width: 40%;
+    margin: auto;
+    margin-top: 30px;
+    display: flex;
+    align-items: baseline;
+}
+.recherche {
+    border: 1px solid #e17055;
+    border-radius: 7px;
+    margin-left: -5px;
+    padding: 6px 10px;
+    background-color: #636e72;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    color: whitesmoke;
+}
+.search {
+    border: 1px solid #e17055;
+    margin-right: 0 !important;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+}
+    /* Table article */
+
 .tableArticle {
     width: 83%;
     margin: auto;
-    margin-top: 95px;
+    margin-top: 70px;
 }
 .tableArticle td {
-    border-bottom: rgb(102, 102, 102) 1px solid;
+    border-bottom: #b2bec3 1px solid;
     font-size: 1.1rem;
     text-align: center;
 }
 .tableArticle thead{
-    border: 1px solid rgb(102, 102, 102);
-    background-color:  rgb(43, 107, 245);
+    background-color:  #e17055;
     color: whitesmoke;
 }
-.tableArticle td, .tableArticle th {
-    padding: 13px 18px 13px 18px;
+.tableArticle td {
+    padding: 18px 10px;
     text-align: center;
 }
-.tableArticle tr {
-    margin-top: 10px;
+.tableArticle th{
+    padding: 14px 10px;
+    text-align: center;
+}
+.imageArticle {
+    padding: 0 !important;
+    padding-left: 10px !important;
 }
 .paginat {
     margin-top: 40px;
     margin-left: 38%;
 }
+.paginat li a:active {
+    background-color: #0984e3 !important;
+}
+.paginat li a:hover {
+    background-color: #0984e3 !important;
+}
+.paginat li a:focus {
+    background-color: #0984e3 !important;
+}
+.paginatUser {
+    margin-top: 40px;
+    margin-left: 38%;
+}
 .action {
     display: flex;
+    justify-content: center;
     gap: 40px;
 }
 .btnEdit {
     text-decoration: none;
-    border: 1px solid #00a000;
+    border: 1px solid #0984e3;
     padding: 2px 15px 0px;
     border-radius: 5px;
-    color: #00a000;
+    color: #0984e3;
     font-size: 15px;
 }
 .btnEdit:hover {
-    background-color: #00a000;
+    background-color: #0984e3;
     color: white;
 }
 .editHover {
@@ -133,9 +202,6 @@ main {
     display: flex;
     margin-bottom: 5px;
 }
-.addArticle {
-    background-color: rgb(43, 107, 245);
-}
     /* Table categorie */
 
 .cate {
@@ -146,15 +212,13 @@ main {
 .tableCate {
     width: 60%;
     margin: auto;
-    margin-top: 95px;
 }
 .tableCate td{
     border-bottom: rgb(102, 102, 102) 1px solid;
     font-size: 1.1rem;
 }
 .tableCate thead{
-    border: 1px solid rgb(102, 102, 102);
-    background-color:  rgb(43, 107, 245);
+    background-color:  #e17055;
     color: whitesmoke;
 }
 .tableCate td, .tableCate th {
@@ -170,6 +234,9 @@ main {
     margin-top: 90px;
     display: flex;
     gap: 120px;
+    border: 1px solid #b2bec3;
+    padding: 30px;
+    border-radius: 7px;
 }
 .formLeft, .formRight {
     width: 45%;
@@ -177,35 +244,60 @@ main {
     flex-direction: column;
     gap: 10px;
 }
-.editButton {
-    width: 100%;
+.editButton{
+    background-color: #0984e3;
+    margin: auto !important;
+    color: whitesmoke;
+    width: 70%;
+    margin-top: 35px !important;
+}
+.editButton:hover{
+    background-color: white;
+    color: #0984e3;
 }
 .formItem{
     margin-top: 5px;
 }
 .btnEditCate {
     text-decoration: none;
-    border: 1px solid #00a000;
+    border: 1px solid #0984e3;
     border-radius: 5px;
-    color: #00a000;
+    color: #0984e3;
     font-size: 15px;
     padding: 4px 15px;
 }
 .btnEditCate:hover {
-    background-color: #00a000;
+    background-color: #0984e3;
     color: white;
+}
+.editCate{
+    width: 30%;
+    margin: auto;
+    margin-top: 15%;
+    border: 1px solid #b2bec3;
+    padding: 50px;
+    border-radius: 7px;
+}
+.save {
+    background-color: #0984e3;
+    color: whitesmoke;
+    width: 50%;
+    margin-top: 20px;
+}
+.try{
+    display: flex;
+    justify-content: center;
 }
     /* Table Users */
 
 .users {
     width: 80%;
     margin: auto;
-    margin-top: 150px;
 }
 .tableUsers {
-    width: 65%;
+    width: 70%;
     margin: auto;
-    margin-top: 95px;
+    margin-top: 70px;
 }
 .tableUsers td{
     border-bottom: rgb(102, 102, 102) 1px solid;
@@ -213,8 +305,7 @@ main {
     text-align: center;
 }
 .tableUsers thead{
-    border: 1px solid rgb(102, 102, 102);
-    background-color:  rgb(43, 107, 245);
+    background-color:  #e17055;
     color: whitesmoke;
 }
 .tableUsers td, .tableUsers th {
@@ -226,20 +317,214 @@ main {
 }
 .btnEditProfil {
     text-decoration: none;
-    border: 1px solid #00a000;
+    border: 1px solid #0984e3;
     border-radius: 5px;
-    color: #00a000;
+    color: #0984e3;
     font-size: 15px;
     padding: 3px 15px;
 }
 .btnEditProfil:hover {
-    background-color: #00a000;
+    background-color: #0984e3;
     color: white;
 }
 .adminChange {
     display: flex;
     justify-content: space-evenly;
 }
-.adminChange a {
-    width: 15%;
+#svg{
+    fill: whitesmoke;
+}
+.admin{
+    color: red;
+}
+.userColor{
+    color: green;
+}
+
+
+
+
+
+@media screen and (min-width: 376px) and (max-width: 575px)
+{
+    .menuBurger{
+        display: block;
+    }
+    .action{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+    body{
+        overflow: scroll;
+    }
+    .firstSec{
+        width: 60%;
+    }
+    .secondSec {
+        width: 100%;
+    }
+    .paginat {
+        margin-left: 19%;
+    }
+    .action {
+        padding: 8px;
+    }
+    .tableArticle{
+        margin-top: 70px;
+    }
+    .tableUsers{
+        margin-top: 70px;
+        width: 90%;
+    }
+    .cate{
+        margin-top: 70px;
+    }
+    .tableArticle td {
+        padding: 0 10px;
+    }
+    .tableUsers td {
+        padding: 20px 10px;
+    }
+    .adminChange{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding: 8px 5px !important;
+    }
+    .paginatUser{
+        margin-left: 10%;
+    }
+    .editCate{
+        width: 80%;
+        margin-top: 30%;
+    }
+    .searchBar {
+        width: 70%;
+    }
+    .edit{
+        margin-top: 60px;
+        margin-bottom: 30px;
+        width: 88%;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+    }
+    .formLeft, .formRight {
+        width: 100%;
+    }
+    .tableCate {
+        width: 100%;
+    }
+    .userName{
+        display: none;
+    }
+}
+
+@media screen and (min-width: 576px) and (max-width: 1025px){
+    body{
+        overflow: scroll;
+    }
+    .firstSec{
+        width: 25%;
+        position: sticky;
+        top: 0;
+    }
+    .action{
+        flex-direction: column;
+        gap: 10px;
+    }
+    .tableCate{
+        width: 90%;
+    }
+    .searchBar{
+        width: 50%;
+    }
+    .paginatUser{
+        margin-left: 20%;
+    }
+    .paginat{
+        margin-left: 20%;
+    }
+    .edit{
+        margin-top: 60px;
+        margin-bottom: 30px;
+        width: 88%;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+    }
+    .formLeft, .formRight {
+        width: 100%;
+    }
+    .editCate{
+        width: 80%;
+        margin-top: 30%;
+    }
+}
+
+@media screen and (max-width: 375px){
+    body{
+        overflow: scroll;
+    }
+    header {
+        width: 100%;
+    }
+    .desc{
+        display: none;
+    }
+    .paginatUser{
+        margin-left: 2.5px;
+    }
+    .paginat{
+        margin-left: 20%;
+    }
+    .action{
+        flex-direction: column;
+        gap: 10px;
+    }
+    .menuBurger{
+        display: block;
+    }
+    .h1 {
+        font-size: 1.2rem;
+    }
+    .article{
+        width: 100%;
+    }
+    .firstSec{
+        width: 45%;
+    }
+    .searchBar {
+        width: 80%;
+    }
+    .secondSec{
+        width: 100%;
+    }
+    .cate {
+        margin-top: 70px;
+    }
+    .edit{
+        width: 90%;
+        flex-direction: column;
+        gap: 0;
+    }
+    .formLeft, .formRight {
+        width: 100%;
+    }
+    .tableCate {
+        width: 100%;
+    }
+    .editCate{
+        width: 85%;
+    }
+    .tableUsers td {
+        padding: 13px 10px;
+    }
+    .adminChange{
+        margin-bottom: -1px;
+    }
+    .paginatUser{
+        margin-left: 12%;
+    }
 }
