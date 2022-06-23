@@ -207,7 +207,7 @@ main {
 .cate {
     width: 80%;
     margin: auto;
-    margin-top: 150px;
+    margin-top: 70px;
 }
 .tableCate {
     width: 60%;
@@ -287,6 +287,14 @@ main {
 .try{
     display: flex;
     justify-content: center;
+    background-color:#e17055;
+}
+
+.btnAjout{
+    margin-top:40px;
+    margin-right: 28rem;
+    display: flex;
+    justify-content: end;
 }
     /* Table Users */
 
