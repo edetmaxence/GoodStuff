@@ -5,11 +5,7 @@
 
 
 
-{% block stylesheets %}
-	{{ parent() }}
-	{# <link href="{{ asset('css/table.css') }}" rel="stylesheet"> #}
-	{# <link href="{{ asset('css/button.css') }}" rel="stylesheet"> #}
-{% endblock %}
+
 
 {% block body %}
 
@@ -19,7 +15,7 @@
 		{% endif %}
 	</div>
 	
-							
+					<p class="fs-3 logo"> Videz votre grenier sans bouger de votre fauteuil !	 </p>	
 	{% if app.request.method == 'GET' %}
 
 		
@@ -41,7 +37,7 @@
 			</form>
 			<div class="grid">
 				{% for article in articles %}
-
+ 
 
 					<div class="grid-item">
 					 <a class="text-decoration-none" href="{{ path('detailArticle', {id: article.id })}}">
