@@ -5,11 +5,7 @@
 
 
 
-{% block stylesheets %}
-	{{ parent() }}
-	{# <link href="{{ asset('css/table.css') }}" rel="stylesheet"> #}
-	{# <link href="{{ asset('css/button.css') }}" rel="stylesheet"> #}
-{% endblock %}
+
 
 {% block body %}
 
@@ -41,7 +37,7 @@
 			</form>
 			<div class="grid">
 				{% for article in articles %}
-
+ 
 
 					<div class="grid-item">
 					 <a class="text-decoration-none" href="{{ path('detailArticle', {id: article.id })}}">
