@@ -18,7 +18,7 @@
 		<h2>{{ article.title }} :</h2>
 			
 			<p>Vendeur : {{ article.owner.firstname }}</p>
-			<p>Prix : {{ article.prix }} <span>€</span></p>
+			<p>Prix : {{ article.prix }} €</p>
 			<p>Date : {{ article.CreatedAt|date('d.m.Y')  }} </p>
 			
 					{% if vich_uploader_asset(article,'coverFile') %}

@@ -13,9 +13,7 @@ img {
     display: flex;
     margin: auto;
 }
-span {
-    color: red;
-}
+
 p {
     color: rebeccapurple;
     font-size: 1rem;
