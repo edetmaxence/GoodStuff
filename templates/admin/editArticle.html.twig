@@ -4,7 +4,7 @@
 {% block title %}GoodStuff{% endblock %}
 
 {% block body %}
-<section class="firstSec">
+<section class="firstSec" id="menuLeft">
     <div class="menu">
         <a href="{{ path('app_admin') }}" class="itemMenu" id="annonce">
             <div class="editMenu">
@@ -30,7 +30,7 @@
         </a>
     </div>
 </section>
-<section class="secondSec">
+<section class="secondSec" id="secondSec">
     <div class="edit">
         <div class="formLeft">
             {{ form_start(form) }}
@@ -39,14 +39,14 @@
                 {{ form_row(form.description) }}
                 {{ form_row(form.created_at) }}
                 {{ form_row(form.prix) }}
+                {{ form_row(form.category) }}
+                {{ form_row(form.owner) }}
         </div>
         <div class="formRight">
                 <div class="formItem">
                     {{ form_row(form.coverFile) }}
                 </div>
-                {{ form_row(form.category) }}
-                {{ form_row(form.owner) }}
-                {{ form_row(form.save) }}
+                {{ form_widget(form.save) }}
             {{ form_end(form) }}
         </div>
     </div>

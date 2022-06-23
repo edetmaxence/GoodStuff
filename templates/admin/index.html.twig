@@ -5,7 +5,7 @@
 
 
 {% block body %}
-<section class="firstSec">
+<section class="firstSec d-block" id="menuLeft">
     <div class="menu">
         <a href="{{ path('app_admin') }}" class="itemMenu now" id="annonce">
             <div class="test">
@@ -27,41 +27,57 @@
         </a>
     </div>
 </section>
-<section class="secondSec">
-    {% if success %}
-        <p>L'article a bien été supprimé</p>
+<section class="secondSec" id="secondSec">
+    {% if app.request.method == 'GET' %}
+        {% if articles | length == 0 %}
+            <h4>Aucun résultat pour votre recherche.</h4>
+        {% else %}
+            <div id="article">
+                {% if app.request.query.get('query') %}
+                    <div class="returnDiv">
+                        <a href="{{ path('app_admin') }}" class="return">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M12 20 4 12 12 4 13.425 5.4 7.825 11H20V13H7.825L13.425 18.6Z"/></svg>
+                            Retour
+                        </a>
+                    </div>
+                {% endif %}
+                <form class="d-flex searchBar" role="search" action="{{ path('app_admin') }}">
+                    <input class="form-control me-2 search" id="recherche" name="query" type="Rechercher" placeholder="Rechercher" aria-label="Rechercher">
+                    <button class="recherche">Recherche</button>
+                </form>
+                <table class="tableArticle">
+                    <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th>Titre</th>
+                            <th class="desc">Description</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for article in articles %}
+                            <tr>
+                                <td class='imageArticle'><img src="images/articles/{{ article.cover }}" alt="" width="70px"></td>
+                                <td>{{ article.title }}</td>
+                                <td class="desc">{{ article.description|u.truncate(50) }}</td>
+                                <td>
+                                    <div class="action">
+                                        <a href="{{ path('app_admin_article_edit', { id: article.id }) }}" class="btnEdit">Editer</a>
+                                        <form action="{{ path('app_admin_article_delete', { id: article.id }) }}" method="post">
+                                            <input type="hidden" name="token" value="{{ csrf_token('delete-article-'~ article.id) }}">
+                                            <button class="btn btn-sm btn-outline-danger">Supprimer</button>
+                                        </form> 
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <div class="paginat">
+                    <p>{{ knp_pagination_render(articles) }}</p>
+                </div>
+            </div>
+        {% endif %}
     {% endif %}
-    <a href="{{ path('app_admin_article_add') }}" class="addArticle">Ajouter un Article</a>
-    <div id="article">
-        <table class="tableArticle">
-            <thead>
-                <tr>
-                    <th>Image</th>
-                    <th>Titre</th>
-                    <th>Description</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for article in articles %}
-                    <tr>
-                        <td><img src="images/articles/{{ article.cover }}" alt="" width="50px"></td>
-                        <td>{{ article.title }}</td>
-                        <td>{{ article.description|u.truncate(90) }}</td>
-                        <td class="action">
-                            <a href="{{ path('app_admin_article_edit', { id: article.id }) }}" class="btnEdit">Editer</a>
-                            <form action="{{ path('app_admin_article_delete', { id: article.id }) }}" method="post">
-                                <input type="hidden" name="token" value="{{ csrf_token('delete-article-'~ article.id) }}">
-                                <button class="btn btn-sm btn-outline-danger">Supprimer</button>
-                            </form> 
-                        </td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        <div class="paginat">
-            <p>{{ knp_pagination_render(articles) }}</p>
-        </div>
-    </div>
 </section>
 {% endblock %}

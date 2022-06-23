@@ -8,6 +8,8 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
+use Doctrine\ORM\Query\Expr\andX;
+use Doctrine\ORM\Query\Expr\orX;
 
 /**
  * @extends ServiceEntityRepository<User>
@@ -54,6 +56,22 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $user->setPassword($newHashedPassword);
 
         $this->add($user, true);
+    }
+
+    public function findUserByName(string $query)
+    {
+        $qb = $this->createQueryBuilder('p');
+        $qb->where(
+            $qb->expr()->andX(
+                $qb->expr()->orX(
+                    $qb->expr()->like('p.firstname', ':query'),
+                    $qb->expr()->like('p.email', ':query'),          
+                )
+            ),
+            )
+        ->setParameter('query', '%' . $query . '%');
+        
+        return $qb->getQuery()->getResult();
     }
 
 //    /**
