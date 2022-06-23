@@ -1,0 +1,21 @@
+h3 {
+    font-size: 1.5rem;
+    margin: 2rem;
+}
+h2 {
+    text-align: center;
+    color: black;
+    font-size: 2rem;
+    margin: 2rem;
+}
+
+img {
+    display: flex;
+    margin: auto;
+}
+
+p {
+    color: rebeccapurple;
+    font-size: 1rem;
+    margin: 2rem;
+}

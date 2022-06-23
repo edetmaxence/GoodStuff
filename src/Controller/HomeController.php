@@ -6,6 +6,7 @@ use App\Entity\Article;
 use App\Form\ArticleFormType;
 use App\Repository\ArticleRepository;
 use App\Repository\CategoryRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -16,9 +17,15 @@ use Symfony\Component\Routing\Annotation\Route;
 class HomeController extends AbstractController
 {
     #[Route('/', name: 'app_home')]
-    public function index(ArticleRepository $articleRepository, CategoryRepository $categoryRepository, Request $request): Response
+    public function index(ArticleRepository $articleRepository, CategoryRepository $categoryRepository,PaginatorInterface $paginatorInterface, Request $request): Response
     {
-        $articles = $articleRepository->findAll();
+        
+
+        $articles = $paginatorInterface->paginate(
+            $articleRepository->findAll(),
+            $request->query->getInt('page',1),6
+        );
+
         $id = $request->query->get("id");
         
         if($id){
@@ -29,7 +36,11 @@ class HomeController extends AbstractController
 
                }
                else{
-                $articles = $articleRepository->findBy(['category' => $id]);
+                
+                $articles = $paginatorInterface->paginate(
+                    $articleRepository->findBy(['category' => $id]),
+                    $request->query->getInt('page',1),6
+                );
                }
         }
     
