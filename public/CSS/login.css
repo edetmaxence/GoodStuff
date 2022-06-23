@@ -1,4 +1,16 @@
 body {
     background-image: url(https://www.maif.fr/maiffr/documents/images/annexes/erreurs/erreur-serveur-anim.svg);
     background-size: cover;
-}
+} 
+.container {
+    
+    max-width: 380px;
+    margin: auto;
+    background-color: rgba(0,0,0,0.2);
+    text-align: center;
+    border-radius: 20px;
+    padding: 40px;
+    color: #fff;
+    box-sizing: border-box;
+    margin-top: 100px;
+} 

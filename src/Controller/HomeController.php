@@ -47,7 +47,9 @@ class HomeController extends AbstractController
     public function add(Request $request, ArticleRepository $articleRepository): Response
     {
         $article = new Article;
-        $form = $this->createForm(ArticleFormType::class, $article);
+        $form = $this->createForm(ArticleFormType::class, $article,[
+            'validation_groups' => ['new'],
+        ]);
         $form->handleRequest($request);
 
 

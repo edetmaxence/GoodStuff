@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Text&family=Roboto:wght@300;400;500;700&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+
+.background {
+    background-color: #0a3d62;
+}
+
+.link {
+    color: aliceblue !important;
+}
+
+.link:hover {
+    color: black;
+}
+.link:hover {
+    color: #FFC312;
+}

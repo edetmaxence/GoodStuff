@@ -39,7 +39,7 @@ class Article
     private $cover;
 
     #[Vich\UploadableField(mapping: 'articles', fileNameProperty: 'cover' )]
-    #[Assert\Image(mimeTypesMessage: 'Ceci n\'est pas une image')]
+    #[Assert\Image(mimeTypesMessage: 'Ceci n\'est pas une image',groups :[ 'new'])]
     #[Assert\File(maxSize: '1M',
      maxSizeMessage: 'Cette image ne doit pas dépasser les {{ limit }} {{ suffix }}',
 

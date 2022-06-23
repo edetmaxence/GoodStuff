@@ -60,7 +60,7 @@ class ArticleFormType extends AbstractType
             
             ->add('save', SubmitType::class, [
                 'label' => 'Enregistrer ',
-                'attr' => ['class' => 'btn btn-sm btn-primary editButton']
+                'attr' => ['class' => 'editButton']
             ])
         ;
     }

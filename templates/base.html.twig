@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html> 
+<html>
 
 	<head>
 		<meta charset="UTF-8">
@@ -13,12 +13,12 @@
 		{# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
 		{% block stylesheets %}
 			{{ encore_entry_link_tags('app') }}
-		
 			<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-	<link rel="stylesheet" href="{{ asset('css/style.css') }}">
-			<link rel="stylesheet" href="{{ asset('css/footer.css') }}">
+			<link href="{{ asset('css/navbar.css') }}" rel="stylesheet">
+			<link href="{{ asset('css/button.css') }}" rel="stylesheet">
 			<link rel="stylesheet" href="{{ asset('css/erreur404.css') }}">
-
+			<link rel="stylesheet" href="{{ asset('css/style.css') }}">
+			
 		{% endblock %}
 
 		{% block javascripts %}
@@ -29,8 +29,8 @@
 	</head>
 	<body>
 		{# Navbar #}
-		 
-		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+		<nav class="navbar navbar-expand-lg background">
 			<div class="container-fluid">
 				<a class="navbar-brand" href="{{ path('app_home') }}">
 					<span class="text-primary">GoodStuff</span>
@@ -39,54 +39,72 @@
 					<span class="navbar-toggler-icon"></span>
 				</button>
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
-					<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 						<li class="nav-item">
-							<a class="nav-link" href="{{ path('app_home') }}">
+							<a class="link nav-link" href="{{ path('app_home') }}">
 								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-door-fill" viewbox="0 0 16 16">
 									<path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5z"/>
 								</svg>
 							</a>
 						</li>
-						{% if is_granted('ROLE_USER') %}
+						{% if app.user is not null %}
 							<li class="nav-item">
-								<a class="nav-link" type="button" href="{{ path('newArticle') }}">Deposer annonce</a>
+								<a class="link nav-link" type="button" href="{{ path('newArticle') }}">Deposer annonce</a>
+							</li>
+						{% else %}
+							<li class="nav-item">
+								<a class="link nav-link" href="{{ path('app_login') }}">
+									Deposer annonce
+								</a>
 							</li>
 						{% endif %}
-
-
 						<li class="nav-item d-flex align-items-center px-2 my-2">
 							<div class="vr text-white"></div>
 						</li>
 						{% if app.user is not null %}
 							<li class="nav-item">
-								<a class="nav-link" href="{{ path('app_account') }}">Bonjour
-									{{ app.user.userIdentifier }}</a>
-							</li>
+								<a class="link nav-link" href="{{ path('app_account') }}">
+									Mon compte
+								</a>
+							</li>						
 							{% if is_granted('ROLE_ADMIN') %}
 								<li class="nav-item">
-									<a class="nav-link text-warning" href="{{ path('app_admin') }}">Administrator</a>
+									<a class="link nav-link text-warning" href="{{ path('app_admin') }}">Administrator</a>
+								</li>
+								<li>
+									<a class="link nav-link text-warning" href="{{ path('app_admin') }}">Tableau de bord</a>
 								</li>
 							{% endif %}
 							<li class="nav-item">
-								<a class="nav-link text-warning" href="{{ path('app_logout') }}">Se déconnecter</a>
+								<a title="Se déconnecter" class="link nav-link text-warning" id="wrapper" href="{{ path('app_logout') }}" placeholder="se déconnecter">
+									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-person-check" viewbox="0 0 16 16">
+										<path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+										<path fill-rule="evenodd" d="M15.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+									</svg>
+								</a>
 							</li>
 						{% else %}
 							<li class="nav-item">
-								<a class="nav-link" href="{{ path('app_login') }}">Se connecter</a>
+								<a title="Se connecter" class="link nav-link" href="{{ path('app_login') }}">
+									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-x" viewbox="0 0 16 16">
+										<path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+										<path fill-rule="evenodd" d="M12.146 5.146a.5.5 0 0 1 .708 0L14 6.293l1.146-1.147a.5.5 0 0 1 .708.708L14.707 7l1.147 1.146a.5.5 0 0 1-.708.708L14 7.707l-1.146 1.147a.5.5 0 0 1-.708-.708L13.293 7l-1.147-1.146a.5.5 0 0 1 0-.708z"/>
+									</svg>
+								</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href="{{ path('app_register') }}">Ouvrir un compte</a>
+								<a class="link nav-link" href="{{ path('app_register') }}">Ouvrir un compte</a>
 							</li>
 						{% endif %}
-						<form class="d-flex" role="search" action="{{ path('handleSearch') }}">
-							<input class="form-control me-2" name="query" type="Rechercher" placeholder="Rechercher" aria-label="Rechercher">
-						</form>
+
 					</ul>
+					<form class="d-flex" role="search" action="{{ path('handleSearch') }}">
+						<input class="form-control me-2" name="query" type="Rechercher" placeholder="Rechercher" aria-label="Rechercher">
+					</form>
 				</div>
 			</div>
 		</nav>
-		
-		
+
 		<div class="container py-5"> {% block body %}{% endblock %}
 
 

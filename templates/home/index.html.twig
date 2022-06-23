@@ -5,14 +5,28 @@
 
 
 
+{% block stylesheets %}
+	{{ parent() }}
+	{# <link href="{{ asset('css/table.css') }}" rel="stylesheet"> #}
+	{# <link href="{{ asset('css/button.css') }}" rel="stylesheet"> #}
+{% endblock %}
+
 {% block body %}
+
+	<div class="pb-4 text-capitalize">
+		{% if is_granted('ROLE_USER') %}
+			Bienvenue	{{ app.user.userIdentifier }} !
+		{% endif %}
+	</div>
+	
+							
 	{% if app.request.method == 'GET' %}
 
+		
 
 		{% if articles | length == 0 %}
 			<h4>Aucun résultat pour votre recherche.</h4>
 		{% else %}
-
 
 			<form method="GET">
 				<select onchange="this.form.submit();" id="id" name="id" class="form-select" aria-label="Default select example">
@@ -39,12 +53,14 @@
 							{% endif %}
 							<div class="card-content">
 								<h1 class="card-header">{{ article.title }}</h1>
-								<p>{{ article.description | u.truncate(35,'...') }}</p>
-								Vender : {{ article.owner.userIdentifier }}
-								Localisation : {{ article.owner.city }}
-								Prix: {{ article.prix }}
-								Ajouter le : {{ article.createdAt| date('d-m-Y') }}
-								Catégorie : {{ article.category.name }}
+								<p class="desc">{{ article.description | u.truncate(20,'...') }}</p>
+								<div>
+									<p class="info">Vendeur : {{ article.owner.userIdentifier }}</p>
+									<p class="info">Localisation : {{ article.owner.city }}</p>
+									<p class="info">Prix: {{ article.prix }}</p>
+									<p class="info">Ajouté le : {{ article.createdAt| date('d-m-Y') }}</p>
+									<p class="info">Catégorie : {{ article.category.name }}</p>
+								</div>
 							</div>
 						</div>
 						</a>

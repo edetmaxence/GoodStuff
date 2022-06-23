@@ -20,7 +20,9 @@ class CategoryFormType extends AbstractType
                 ])
 
             ->add('article', SubmitType::class, [
-                'label' => 'Enregistrer'])         // label sur formulaire + champs    
+                'label' => 'Enregistrer',
+                'attr' => ['class'=> 'save']
+                ])         // label sur formulaire + champs    
         ;
     }
 
