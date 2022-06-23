@@ -295,6 +295,10 @@ main {
     margin-right: 28rem;
     display: flex;
     justify-content: end;
+    
+}
+.btnAjout a {
+    background-color: #0984e3;
 }
     /* Table Users */
 
