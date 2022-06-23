@@ -53,12 +53,14 @@
 							{% endif %}
 							<div class="card-content">
 								<h1 class="card-header">{{ article.title }}</h1>
-								<p>{{ article.description | u.truncate(35,'...') }}</p>
-								Vender : {{ article.owner.userIdentifier }}
-								Localisation : {{ article.owner.city }}
-								Prix: {{ article.prix }}
-								Ajouter le : {{ article.createdAt| date('d-m-Y') }}
-								Catégorie : {{ article.category.name }}
+								<p class="desc">{{ article.description | u.truncate(20,'...') }}</p>
+								<div>
+									<p class="info">Vendeur : {{ article.owner.userIdentifier }}</p>
+									<p class="info">Localisation : {{ article.owner.city }}</p>
+									<p class="info">Prix: {{ article.prix }}</p>
+									<p class="info">Ajouté le : {{ article.createdAt| date('d-m-Y') }}</p>
+									<p class="info">Catégorie : {{ article.category.name }}</p>
+								</div>
 							</div>
 						</div>
 						</a>

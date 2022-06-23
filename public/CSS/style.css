@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Text&family=Roboto:wght@300;400;500;700&display=swap');
 
 body {
-    background-color: #eee;
+    background-color: #ffffff;
     font-family: 'Roboto', sans-serif;
     min-height: 100vh;
     position: relative;
@@ -16,18 +16,20 @@ body {
 
 .grid-item {
     background-color: #fff;
-    border-radius: 0.4rem;
+    border-radius: 7px;
     overflow: hidden;
-    box-shadow: 0 3rem 6rem rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
     cursor: pointer;
     transition: 0.2s;
-    margin: 4rem 0; 
+    margin: 4rem 0;
+    height: 80%;
+   
   
 }
 
 .grid-item:hover {
     transform: translateY(-0.5%);
-    box-shadow: 0 4rem 8rem rgba(0, 0, 0, 0.5);
+    box-shadow: 0 1px 25px rgba(0, 0, 0, 0.5);
 }
 
 .card-img {
@@ -43,10 +45,12 @@ body {
 }
 
 .card-header {
-    font-size: 3rem;
+    font-size: 1.5rem;
     font-weight: 500;
-    color: #0d0d0d;
+    color: #ffffff;
     margin-bottom: 1.5rem;
+    background-color: #f0932b;
+    border-radius: 10px;
 }
 
 .card-text {
@@ -56,6 +60,15 @@ body {
     color: #3d3d3D;
     margin-bottom: 2.5rem;
 }
+.info {
+    color: #3d3d3D;
+}
+
+.desc {
+    color: #0a3d62;
+}
+
+
 
 
 
@@ -130,4 +143,24 @@ footer ul li {
     text-decoration: none;
     gap: 20px;
     color: white;
+}
+
+@media  screen and (max-width: 575px) {
+    .grid {
+        
+        
+        grid-template-columns: repeat(1, 1fr);
+
+    }
+
+    
+}
+@media screen and (min-width: 576px) and (max-width: 1025px) {
+    .grid {
+        
+        
+        grid-template-columns: repeat(2, 1fr);
+
+    }
+    
 }
