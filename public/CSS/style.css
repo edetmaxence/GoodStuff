@@ -1,17 +1,16 @@
-
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Text&family=Roboto:wght@300;400;500;700&display=swap');
 
 body {
     background-color: #eee;
-    font-family: sans-serif;
+    font-family: 'Roboto', sans-serif;
     min-height: 100vh;
     position: relative;
 }
 
 .grid {
     display: grid;
-    width: 114em;
-    gap: 6rem;
-    grid-template-columns: repeat(auto-fit, minmax(30rem));
+    gap: 1.5rem;
+    grid-template-columns: repeat(3, 1fr);
     align-items: start;
 }
 
@@ -22,6 +21,8 @@ body {
     box-shadow: 0 3rem 6rem rgba(0, 0, 0, 0.1);
     cursor: pointer;
     transition: 0.2s;
+    margin: 4rem 0; 
+  
 }
 
 .grid-item:hover {
