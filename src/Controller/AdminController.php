@@ -7,7 +7,6 @@ use App\Entity\Category;
 use App\Entity\User;
 use App\Form\ArticleFormType;
 use App\Form\CategoryFormType;
-use App\Form\UserFormType;
 use App\Repository\ArticleRepository;
 use App\Repository\CategoryRepository;
 use App\Repository\UserRepository;
@@ -19,23 +18,28 @@ use Symfony\Component\Routing\Annotation\Route;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\HttpFoundation\RequestStack;
+
 
 class AdminController extends AbstractController
 {
     #[Route('/admin', name: 'app_admin')]
     public function index(CategoryRepository $categoryRepository, ArticleRepository $articleRepository, Request $request, PaginatorInterface $paginatorInterface ): Response
     {   
-        $success = $request->query->get('success');
+        $results = $articleRepository->findAll();
+
+        $query = $request->query->get('query');
+        if($query) {
+            $results = $articleRepository->findArticlesByName($query);
+        }
 
         $articles = $paginatorInterface->paginate(
-            $articleRepository->findAll(),
-            $request->query->getInt('page', 1),1
+            $results,
+            $request->query->getInt('page', 1),
+            7
         );
 
         return $this->render('admin/index.html.twig', [
-            'articles' => $articles,
-            'success' => $success
+            'articles' => $articles
         ]);
     }
 
@@ -56,10 +60,17 @@ class AdminController extends AbstractController
     #[Route('/admin/users', name: 'app_admin_users')]
     public function users( UserRepository $userRepository, Request $request, PaginatorInterface $paginatorInterface ): Response
     {   
+        $results = $userRepository->findAll();
+
+        $query = $request->query->get('query');
+        if($query) {
+            $results = $userRepository->findUserByName($query);
+        }
+
         $users = $paginatorInterface->paginate(
-            $userRepository->findAll(),
+            $results,
             $request->query->getInt('page', 1),
-            10
+            9
         );
 
         return $this->render('admin/users.html.twig', [
@@ -144,15 +155,5 @@ class AdminController extends AbstractController
         $userRepository->add($user, true);
 
         return $this->json(['role' => $role]);
-    }
-
-    #[Route('/admin/article/add', name: 'app_admin_article_add')]
-    public function addArticle( ): Response{
-       
-
-
-        return $this->render('admin/addArticle.html.twig', [
-            
-        ]);
     }
 }
