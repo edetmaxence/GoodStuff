@@ -9,6 +9,7 @@
 /vendor/
 /composer.lock/
 /composer.json/
+/images/articles/
 ###< symfony/framework-bundle ###
 
 ###> phpunit/phpunit ###

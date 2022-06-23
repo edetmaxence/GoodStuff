@@ -1,24 +1,31 @@
 {% extends 'base.html.twig' %}
 
 
-{% block title %}Annonce
+{% block title %}Annonce{% endblock %}
+
+
+{% block stylesheets %}
+	{{ parent() }}
+	<link href="{{ asset('css/details.css') }}" rel="stylesheet">
+
 {% endblock %}
 
 
 
 {% block body %}
-	<div class="text-center">
+
 	
-		<h2>
-			{{ article.title }}</h2>
-		<h3> {{ article.description }}</h3>
-		<div>
-			{% if vich_uploader_asset(article,'coverFile') %}
-				<img src="{{ vich_uploader_asset(article,'coverFile')|imagine_filter('thumbnail') }}" alt="image d'une annonce">
-			{% endif %}
-		</div>
+		<h2>{{ article.title }} :</h2>
+			
+			<p>Vendeur : {{ article.owner.firstname }}</p>
+			<p>Prix : {{ article.prix }} <span>€</span></p>
+			<p>Date : {{ article.CreatedAt|date('d.m.Y')  }} </p>
+			
+					{% if vich_uploader_asset(article,'coverFile') %}
+						<img src="{{ vich_uploader_asset(article,'coverFile')|imagine_filter('thumbnail') }}" id="object-position-1" alt="image d'une annonce">
+					{% endif %}
+			<h3> {{ article.description }}</h3>
 
-		Vendeur : {{ article.owner.firstname }}
-
-	</div>
+		
+	
 {% endblock %}
