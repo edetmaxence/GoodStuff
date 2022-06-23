@@ -35,18 +35,18 @@ if (screen.width < 1025 ) {
     menuLeft.classList.add('d-block')
     menuLeft.classList.remove('d-none')
 }
-
-
 menu.addEventListener('click', function(){
-    if (menuLeft.classList.contains('d-block')) {
+    if (menuLeft.classList.contains('d-none')) {
+        menuLeft.classList.remove('d-none')
+        menuLeft.classList.add('d-block')
+
+        secondSec.classList.add('d-none')
+
+    } else {
         menuLeft.classList.remove('d-block')
         menuLeft.classList.add('d-none')
         
         secondSec.classList.remove('d-none')
-    } else {
-        menuLeft.classList.add('d-block')
-        menuLeft.classList.remove('d-none')
-        secondSec.classList.add('d-none')
     }
 })
 
