@@ -17,18 +17,22 @@
 		{{ message }}
 	</div>
 {% endfor %}
-<div class="d-flex align-items-center justify-content-between">
-	<h3>Bienvenue
-		<span class="text-primary text-capitalize">
-			{{ app.user.userIdentifier }}
-		</span>
-	</h3>
 
-	{# Demander à utilisateur de completer ses donnée #}
-	<a href="{{ path('edituser', { id: app.user.id }) }}" class=" btn btn-outline-warning">
-		Completer vos données
-	</a>
-</div>
+<div class="container">
+
+
+	<div class="d-flex align-items-center justify-content-between">
+		<h3>Bienvenue
+			<span class="text-primary text-capitalize">
+				{{ app.user.userIdentifier }}
+			</span>
+		</h3>
+
+		{# Demander à utilisateur de completer ses donnée #}
+		<a href="{{ path('edituser', { id: app.user.id }) }}" class=" btn btn-outline-warning">
+			Completer vos données
+		</a>
+	</div>
 
 	<a class="btn btn-outline-warning" type="button" href="{{ path('newArticle') }}">Deposer annonce</a>
 	{% if is_granted('ROLE_ADMIN') %}
@@ -72,7 +76,8 @@
 					<img src="{{ vich_uploader_asset(article,'coverFile')|imagine_filter('vignette') }}" alt="image d'une annonce">
 				</td>
 				<td>{{ article.title }}</td>
-				<td>{{ article.prix }} €</td>
+				<td>{{ article.prix }}
+					€</td>
 				<td>
 					<a title="Details" href="{{ path('detailArticle', {id: article.id })}}" class=" btn btn-primary">
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-journal-text" viewbox="0 0 16 16">
@@ -104,5 +109,15 @@
 				</td>
 			</tr>
 		</td>
+
 	</tbody>
-</tr>{% endfor %}</tbody></table>{% endblock %}
+</tr>
+
+
+
+{% endfor %}</tbody></table>
+
+
+
+</div>
+{% endblock %}

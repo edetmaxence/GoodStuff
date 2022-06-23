@@ -107,7 +107,7 @@ footer {
     position: absolute;
     bottom: 0;
     width: 100%;
-    padding-top: 2rem;
+    padding: 1rem;
     background: #3c6382;
     z-index: 10;
 }

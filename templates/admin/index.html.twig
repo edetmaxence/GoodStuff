@@ -50,6 +50,7 @@
                         <tr>
                             <th>Image</th>
                             <th>Titre</th>
+                            <th>Auteur</th>
                             <th class="desc">Description</th>
                             <th>Action</th>
                         </tr>
@@ -59,6 +60,7 @@
                             <tr>
                                 <td class='imageArticle'><img src="images/articles/{{ article.cover }}" alt="" width="70px"></td>
                                 <td>{{ article.title }}</td>
+                                <td>{{ article.owner.UserIdentifier }}</td>
                                 <td class="desc">{{ article.description|u.truncate(50) }}</td>
                                 <td>
                                     <div class="action">
